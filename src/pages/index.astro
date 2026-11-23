@@ -1,6 +1,7 @@
 ---
 import Variacao from '../components/Variacao.astro';
-import { contato, cases, pessoais, planos, sobMedida, faq, modelos, pedirModelo } from '../lib/variacao';
+import { contato, cases, pessoais, planos, sobMedida, faq, modelos } from '../lib/variacao';
+const tipos = planos.map((p) => p.nome).map((t) => ({ t, itens: modelos.filter((m) => m.tipo === t) }));
 const nav = [['#como', 'Como funciona'], ['#modelos', 'Modelos'], ['#precos', 'Preços'], ['#trabalhos', 'Trabalhos'], ['#perguntas', 'Perguntas']];
 const resumo = [
   ['Preço', 'a partir de R$ 400'],
@@ -90,17 +91,22 @@ const resumo = [
 
   <section class="section" id="modelos" aria-labelledby="modelos-h">
     <div class="wrap">
-      <div class="section-head"><h2 id="modelos-h">Veja funcionando antes de contratar. <span class="muted">Modelos por tipo de negócio. O seu é feito do zero.</span></h2></div>
-      <div class="v-demos">
-        {modelos.map((d) => (
-          <article class="v-demo">
-            <span class={d.status === 'no-ar' ? 'v-tag v-tag--on' : 'v-tag'}>{d.status === 'no-ar' ? 'No ar' : 'Em breve'}</span>
-            <h3>{d.nome}</h3>
-            <p><b>{d.tipo}.</b> {d.texto}</p>
-            {d.status === 'no-ar'
-              ? <a class="link" href={d.href} data-umami-event={`modelo-${d.nome.toLowerCase()}`}>Ver o modelo</a>
-              : <a class="link" href={pedirModelo(d.nome.toLowerCase())} target="_blank" rel="noopener">Quero ver essa</a>}
-          </article>
+      <div class="section-head"><h2 id="modelos-h">Veja funcionando antes de contratar. <span class="muted">Modelos por tipo de projeto. O seu é feito do zero.</span></h2></div>
+      <div class="v-tipos">
+        {tipos.map(({ t, itens }) => (
+          <div class="v-tipo">
+            <h3>{t}</h3>
+            {itens.length === 0 ? <p class="v-breve">Em breve</p> : <ul>
+              {itens.map((m) => (
+                <li>
+                  <p><b>{m.nome}.</b> {m.texto}</p>
+                  {m.href
+                    ? <a class="btn btn--secondary" href={m.href} data-umami-event={`modelo-${t}-${m.nome}`.toLowerCase()}>Ver modelo</a>
+                    : <span class="btn btn--secondary is-off" aria-disabled="true">Ver modelo</span>}
+                </li>
+              ))}
+            </ul>}
+          </div>
         ))}
       </div>
     </div>

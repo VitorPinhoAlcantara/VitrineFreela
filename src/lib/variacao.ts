@@ -3,15 +3,11 @@ export const whatsappLabel = '(79) 99136-0886';
 export const emailEndereco = 'vitoralcantara1722@gmail.com';
 export const email = `mailto:${emailEndereco}?subject=${encodeURIComponent('Orçamento')}`;
 export const contato = whatsapp;
-export const pedirModelo = (nome: string) => 'https://wa.me/5579991360886?text=' + encodeURIComponent(`Olá! Vim pelo site e quero ver o modelo de ${nome}.`);
-
-// status 'no-ar' com href aponta para o modelo pronto; 'em-breve' vira pedido pelo WhatsApp. Trocar o status ao publicar cada modelo.
+// Sem href, o botão aparece desativado. Colocar o href quando o modelo for publicado.
 export const modelos = [
-  { nome: 'Oficina', tipo: 'Site', texto: 'Serviços com preço, horário e botão de WhatsApp.', status: 'no-ar', href: '/modelos/oficina-1/' },
-  { nome: 'Loja', tipo: 'Catálogo', texto: 'Produtos com foto e preço; o pedido chega pronto no WhatsApp.', status: 'em-breve' },
-  { nome: 'Clínica', tipo: 'Sistema', texto: 'Agenda online com confirmação e lembrete automático.', status: 'em-breve' },
-  { nome: 'Barbearia', tipo: 'Sistema', texto: 'Horários livres, escolha do profissional e confirmação.', status: 'em-breve' },
-  { nome: 'Atendimento no WhatsApp', tipo: 'Automação', texto: 'Converse com o robô pelo seu celular: ele responde, mostra horários e chama uma pessoa quando precisa.', status: 'em-breve' },
+  { tipo: 'Site', nome: 'Oficina', texto: 'Serviços com preço, horário e botão de WhatsApp.', href: '/modelos/oficina-1/' },
+  { tipo: 'Site', nome: 'Clínica', texto: 'Tratamentos, convênios e contato direto pelo WhatsApp.' },
+  { tipo: 'Sistema', nome: 'Clínica', texto: 'Agenda online com confirmação e lembrete automático.' },
 ];
 
 // Cases do portfólio público (alcantara.dev.br/api/v1/projects). Só projetos solo; Grafeno e FisioTrack ficam fora por serem de equipe.
