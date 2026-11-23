@@ -1,0 +1,87 @@
+---
+import Variacao from '../../components/Variacao.astro';
+import { contato, cases, planos, passos, garantias, faq } from '../../lib/variacao';
+const dores = [
+  { antes: 'Pedido anotado no caderno e perdido no WhatsApp', depois: 'Catálogo que entrega o pedido pronto, com itens e total' },
+  { antes: 'Planilha que só uma pessoa sabe atualizar', depois: 'Painel com login, onde cada um vê e edita o que é seu' },
+  { antes: 'Cliente procura no Google e encontra o concorrente', depois: 'Site rápido no celular, com endereço e botão de contato' },
+  { antes: 'Horário marcado por mensagem e esquecido', depois: 'Agenda online com lembrete automático' },
+];
+---
+<Variacao title="Variação 3: o problema primeiro" nome="Vitor Alcantara">
+  <section class="hero hero--statement" data-enter aria-labelledby="hero-h">
+    <div class="wrap"><div class="hero-text hero__in">
+      <div>
+        <h1 id="hero-h">Software sob medida para o trabalho manual que trava sua empresa</h1>
+        <p class="hero__lead">Se a operação depende de caderno, planilha ou mensagem solta, eu transformo isso em site, painel ou sistema. Preço fechado antes de começar.</p>
+        <div class="btn-row"><a class="btn btn--primary" href={contato}>Contar meu problema</a><a class="btn btn--secondary" href="#trabalhos">Ver trabalhos</a></div>
+      </div>
+      <dl class="hero__facts">
+        <div><dt>Site</dt><dd>A partir de R$ 600</dd></div>
+        <div><dt>Sistema</dt><dd>A partir de R$ 2.500</dd></div>
+        <div><dt>Orçamento</dt><dd>Escopo e prazo por escrito</dd></div>
+        <div><dt>Código e domínio</dt><dd>No seu nome</dd></div>
+      </dl>
+    </div></div>
+  </section>
+
+  <section class="section" id="problemas" aria-labelledby="problemas-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="problemas-h">Problemas que eu resolvo com código</h2></div>
+      <ul class="v-pains">{dores.map((d) => <li><s>{d.antes}</s><span>{d.depois}</span></li>)}</ul>
+    </div>
+  </section>
+
+  <section class="section" id="sobre" aria-labelledby="sobre-h">
+    <div class="wrap grid grid--top">
+      <div class="span-4"><div class="section-head"><h2 id="sobre-h">Quem faz o seu projeto</h2></div></div>
+      <div class="span-8 start-5 v-note">
+        <p>Sou o Vitor, desenvolvedor full stack em Aracaju. Escrevo o front, o back, o banco e cuido do servidor, então você não vira mensageiro entre três empresas.</p>
+        <p>Comecei resolvendo problemas de casa: meus avós não conseguiam imprimir, então hoje basta mandar a foto num grupo de WhatsApp. É o mesmo jeito que trabalho com empresas: entender a rotina primeiro e só depois escolher a tecnologia.</p>
+        <p class="v-sign">Vitor Pinho Alcantara</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="trabalhos" aria-labelledby="trabalhos-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="trabalhos-h">Trabalhos no ar</h2></div>
+      {cases.slice(0, 3).map((c) => (
+        <article class="v-case">
+          <div><h3>{c.nome}</h3><p>{c.texto}</p></div>
+          <dl><dt>Tipo</dt><dd>{c.tipo}</dd><dt>Entregue</dt><dd>{c.entregue}</dd><dt>Tecnologia</dt><dd>{c.stack}</dd></dl>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" id="como" aria-labelledby="como-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="como-h">Como funciona e quanto custa</h2></div>
+      <ol class="v-steps">{passos.map((p) => <li><h3>{p.t}</h3><p>{p.d}</p></li>)}</ol>
+    </div>
+  </section>
+
+  <section class="section" id="precos" aria-labelledby="precos-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="precos-h">Preços de partida. <span class="muted">Mais a mensalidade de manutenção.</span></h2></div>
+      <div class="v-plans">
+        {planos.map((p) => (
+          <article class={p.destaque ? 'v-plan v-plan--dark' : 'v-plan'}>
+            <h3>{p.nome}</h3>
+            <p>{p.texto}</p>
+            <p class="v-price"><b>{p.preco}</b>{p.mes}</p>
+          </article>
+        ))}
+      </div>
+      <dl class="v-facts">{garantias.map((g) => <div><dt>{g.t}</dt><dd>{g.d}</dd></div>)}</dl>
+    </div>
+  </section>
+
+  <section class="section" id="perguntas" aria-labelledby="perguntas-h">
+    <div class="wrap grid grid--top">
+      <div class="span-4"><div class="section-head"><h2 id="perguntas-h">Perguntas frequentes</h2></div></div>
+      <div class="span-8 start-5 faq">{faq.map((f, i) => <details open={i === 0}><summary>{f.q}</summary><p>{f.a}</p></details>)}</div>
+    </div>
+  </section>
+</Variacao>

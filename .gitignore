@@ -1,0 +1,10 @@
+*.md
+!/README.md
+node_modules
+dist
+.astro
+.env
+_backup-*.tar.gz
+.taste-skill
+.impeccable
+shots

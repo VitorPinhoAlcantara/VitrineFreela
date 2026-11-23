@@ -1,0 +1,220 @@
+---
+const { title, nome, indexar = false, nav = [['#trabalhos', 'Trabalhos'], ['#como', 'Como funciona'], ['#precos', 'Preços'], ['#perguntas', 'Perguntas']] } = Astro.props;
+import { contato, whatsapp, whatsappLabel, email, emailEndereco } from '../lib/variacao';
+---
+<!doctype html>
+<html lang="pt-BR" data-type="service" data-radius="soft" data-buttons="solid" data-motion>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+{!indexar && <meta name="robots" content="noindex, nofollow">}
+<title>{title}</title>
+<meta name="description" content="Sites, catálogos, sistemas e automações sob medida, com escopo e preço fechados antes de começar.">
+<meta property="og:type" content="website">
+<meta property="og:title" content={title}>
+<meta property="og:description" content="Sites, catálogos, sistemas e automações sob medida, com escopo e preço fechados antes de começar.">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:image" content="/share.jpg">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#f6f1e7">
+<meta name="site-kind" content="other">
+<meta name="page-type" content="service">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Instrument+Sans:wdth,wght@75..100,400..600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/system.css">
+<link rel="stylesheet" href="/assets/ui/cards.css">
+<link rel="stylesheet" href="/assets/motion/motion.css">
+<link rel="stylesheet" href="/assets/layout/layout.css">
+<style is:inline>
+:root {
+  --p-bg: #f6f1e7; --p-surface: #e8dfcd; --p-ink: #1f2a33; --p-muted: #585f64;
+  --p-accent: #1d4ed8; --p-accent-ink: #f6f1e7; --p-action: #1d4ed8; --p-action-ink: #f6f1e7;
+  --p-inv-bg: #1f2a33; --p-inv-surface: #2c363e; --p-inv-ink: #f6f1e7; --p-inv-muted: #9d9f9e;
+  --p-inv-accent: #f6f1e7; --p-inv-accent-ink: #1f2a33; --p-inv-action: #f6f1e7; --p-inv-action-ink: #1f2a33;
+  --font-display: "Instrument Serif", Georgia, serif;
+  --font-text: "Instrument Sans", system-ui, sans-serif;
+  --display-weight: 400; --display-tracking: -0.012em; --display-tracking-xl: -0.016em; --ly-scale: 1.12;
+}
+/* páginas de variação: altura pelo conteúdo, não por tela (pedido do usuário: menos espaço vazio) */
+html body main > :is(section, .section):not([data-moment], .hero) { height: auto !important; min-height: 0 !important; padding-block: clamp(48px, 5vw, 72px); }
+html body main > .hero { height: auto; min-height: 0; padding-block: calc(var(--nav) + clamp(32px, 4vw, 64px)) clamp(48px, 5vw, 72px); }
+.hero--split h1 { font-size: clamp(40px, 4.2vw, 60px); }
+html body footer.closing { height: auto !important; min-height: 0 !important; }
+.hero__facts { margin-top: var(--s-8) !important; }
+.v-steps-band .v-steps li { border-color: color-mix(in srgb, var(--ink) 22%, transparent); }
+.v-steps-band .v-steps li::before { color: var(--ink); opacity: .55; }
+.v-steps-band .v-promise { margin-top: var(--s-8); padding-top: var(--s-6); border-top: 1px solid color-mix(in srgb, var(--ink) 22%, transparent); }
+.v-case a { color: var(--ink); text-underline-offset: 3px; }
+.site { --s-bg: #fbf8f2; --s-ink: #1f2328; --s-mut: #5d646c; --s-acc: #1d4ed8; --s-line: #1f232824;
+  display: flex; flex-direction: column; gap: 14px; padding: 22px; background: var(--s-bg); color: var(--s-ink);
+  border: 1px solid var(--s-line); border-radius: var(--r-md); font: 400 15px/1.45 var(--font-text); text-align: left; }
+.site * { margin: 0; }
+.site__top { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.site__top b { font-weight: 600; }
+.site__top span { color: var(--s-mut); }
+.site__title { font: 400 clamp(24px, 2.2vw, 32px)/1.1 var(--font-display); }
+.site__btn { align-self: flex-start; padding: 10px 16px; border-radius: 8px; background: var(--s-acc); color: #fff; font-weight: 500; }
+.site__rows { list-style: none; padding: 0; display: grid; }
+.site__rows li { display: flex; justify-content: space-between; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--s-line); }
+.site__rows li:first-child { border-top: 1px solid var(--s-line); }
+.site__rows em { font-style: normal; font-weight: 500; text-align: right; }
+.site__foot { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 14px; border-radius: 10px; background: #fff; border: 1px solid var(--s-line); }
+.site__foot b { display: block; font-weight: 500; }
+.site__foot span { color: var(--s-mut); }
+.site__addr { display: flex; align-items: center; gap: 12px; padding: 8px 14px; border-radius: 999px; background: #fff; border: 1px solid var(--s-line); }
+.site__addr i { flex: 1; font-style: normal; color: var(--s-mut); }
+.site__addr span { color: #15803d; font-weight: 600; }
+.site__bubble { max-width: 82%; padding: 10px 14px; border-radius: 14px; background: #fff; border: 1px solid var(--s-line); }
+.site__bubble--out { align-self: flex-end; background: #dcf3e4; border-color: #b8e2c6; }
+.site__status { color: var(--s-mut); font-size: 13px; text-align: center; }
+.hero--split .hero__media { display: flex; align-items: center; justify-content: center; padding: clamp(24px, 4vw, 48px); background: var(--surface); border-radius: var(--r-lg); }
+.hero--split .hero__media .site { width: min(100%, 460px); box-shadow: 0 24px 48px -28px #1f2a3355; }
+.hero .v-facts { margin-top: var(--s-7); grid-template-columns: repeat(2, minmax(0, 1fr)); }
+#como .mo-pc__visual { background: var(--surface); padding: 32px; display: grid; place-items: center; }
+#como .mo-pc__visual .site { width: min(100%, 440px); }
+#como .mo-pc__step { cursor: pointer; }
+.v-resumo { position: sticky; top: calc(var(--nav-h, 72px) + 24px); }
+.v-close { align-items: center; padding-block: var(--s-8) var(--s-7); }
+.v-close h2 { margin: 0 0 var(--s-3); }
+.v-close p { margin: 0; color: var(--muted); max-width: 44ch; }
+.v-contacts { display: grid; gap: var(--s-3); }
+.v-contact { display: grid; grid-template-columns: 48px 1fr auto; align-items: center; gap: var(--s-4); padding: var(--s-4) var(--s-5); border: 1px solid var(--line); border-radius: var(--r-md); color: var(--ink); text-decoration: none; transition: transform .2s, border-color .2s; }
+.v-contact:hover { transform: translateY(-2px); border-color: var(--ink); }
+.v-contact img, .v-contact svg { width: 32px; height: 32px; justify-self: center; }
+.v-contact b { display: block; font-weight: 500; font-size: 18px; }
+.v-contact small { color: var(--muted); font-size: 15px; overflow-wrap: anywhere; }
+#como .site p { color: var(--s-ink); }
+.site__addr span { white-space: nowrap; }
+@media (max-width: 1023px) { .hero--split .hero__media { flex: none; height: auto; min-height: 0; } }
+@media (max-width: 639px) { .v-contact { grid-template-columns: 32px 1fr auto; padding: var(--s-4); gap: var(--s-3); } .v-contact small { font-size: 14px; overflow-wrap: normal; } .hero--split .hero__media { padding: 16px; } }
+.site__btn { background: transparent !important; color: var(--s-ink) !important; border: 1px solid var(--s-line); }
+@media (max-width: 639px) { .site__foot { grid-template-columns: 1fr; } }
+.v-case dd, .v-work p, .v-demo p { text-wrap: pretty; }
+.footer__lede { line-height: 1.4; }
+#como .mo-pc__step:focus-visible { outline: 2px solid var(--ink); outline-offset: 6px; }
+.v-works { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-5); }
+.v-work { display: grid; gap: var(--s-3); align-content: start; }
+.v-work__logo { display: grid; place-items: center; height: clamp(140px, 16vw, 220px); border-radius: var(--r-md); overflow: hidden; }
+.v-work__logo img { height: clamp(96px, 11vw, 160px); width: auto; max-width: 80%; object-fit: contain; }
+.v-work .link { justify-self: start; }
+.v-demo .link { align-self: flex-start; }
+.v-work h3 { margin: var(--s-2) 0 0; }
+.v-work p { margin: 0; color: var(--muted); }
+.v-work .v-work__res { color: var(--ink); font-size: var(--t-lead, 19px); line-height: 1.4; }
+.v-work small { color: var(--muted); font-size: 14px; }
+.v-others { margin: var(--s-7) 0 0; padding-top: var(--s-4); border-top: 1px solid var(--line); color: var(--muted); }
+.v-others a { color: var(--ink); text-underline-offset: 3px; }
+.v-demos { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--s-4); }
+.v-demo { display: flex; flex-direction: column; gap: var(--s-3); padding: var(--s-5); border: 1px solid var(--line); border-radius: var(--r-md); }
+.v-demo h3 { margin: 0; font-size: 22px; }
+.v-demo p { margin: 0; color: var(--muted); }
+.v-demo .v-tag { align-self: flex-start; padding: 4px 10px; border-radius: 999px; font-size: 13px; font-weight: 500; background: var(--surface); color: var(--muted); }
+.v-demo .v-tag--on { background: #dcf3e4; color: #166534; }
+.v-demo .link { margin-top: auto; padding-top: var(--s-3); }
+@media (max-width: 767px) { .v-works, .v-demos { grid-template-columns: 1fr; } }
+.v-custom { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr) auto; gap: var(--s-6); align-items: center; margin-top: var(--s-4); padding: var(--s-5) var(--s-6); border: 1px solid var(--line); border-radius: var(--r-md); }
+.v-custom h3 { margin: 0 0 var(--s-2); font-size: 20px; }
+.v-custom p { margin: 0; color: var(--muted); }
+.v-custom ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 15px; display: grid; gap: 4px; }
+@media (max-width: 1023px) { .v-custom { grid-template-columns: 1fr; gap: var(--s-4); } .v-custom .btn { justify-self: start; } }
+.v-kicker { margin: 0 0 var(--s-3); color: var(--muted); font-size: var(--t-small, 14px); letter-spacing: .04em; text-transform: uppercase; }
+.v-big { font: 400 clamp(40px, 6vw, 88px)/1.02 var(--font-display); letter-spacing: -0.02em; margin: 0; }
+.v-facts { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: var(--s-5); margin: var(--s-8) 0 0; padding: var(--s-5) 0 0; border-top: 1px solid var(--line); }
+.v-facts dt { color: var(--muted); font-size: 14px; }
+.v-facts dd { margin: 4px 0 0; font-weight: 500; }
+.v-case { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s-6); padding: var(--s-6) 0; border-top: 1px solid var(--line); align-items: start; }
+.v-case h3 { margin: 0 0 var(--s-2); }
+.v-case p { margin: 0 0 var(--s-3); color: var(--muted); max-width: 52ch; }
+.v-case dl { display: grid; grid-template-columns: auto 1fr; gap: 6px var(--s-4); margin: 0; font-size: 15px; }
+.v-case dt { color: var(--muted); }
+.v-case dd { margin: 0; }
+.v-pains { list-style: none; padding: 0; margin: 0; display: grid; gap: 0; }
+.v-pains li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: var(--s-6); padding: var(--s-5) 0; border-top: 1px solid var(--line); }
+.v-pains s { color: var(--muted); text-decoration-thickness: 1px; }
+.v-plans { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--s-4); }
+.v-plans > .v-plan { display: grid; grid-row: span 5; grid-template-rows: subgrid; gap: var(--s-3); align-content: start; }
+.v-plan { display: flex; flex-direction: column; gap: var(--s-3); padding: var(--s-5); border: 1px solid var(--line); border-radius: var(--r-md); background: var(--bg); }
+.v-plan h3 { margin: 0; font-size: 20px; }
+.v-plan p { margin: 0; color: var(--muted); }
+.v-plan .v-price { color: var(--ink); font-size: 15px; }
+.v-plan .v-price b { display: block; font: 400 32px/1.1 var(--font-display); }
+.v-plan .v-price s { color: var(--muted); text-decoration-thickness: 1px; }
+.v-plan .v-off { padding: 2px 8px; border-radius: 99px; background: #dcf3e4; color: #166534; font-size: 12px; font-weight: 600; white-space: nowrap; }
+.v-plan ul { margin: 0; padding-left: 18px; color: var(--muted); font-size: 15px; display: grid; gap: 4px; }
+.v-plan .btn { margin-top: auto; }
+.v-plan--dark { background: var(--p-inv-bg); color: var(--p-inv-ink); border-color: var(--p-inv-bg); }
+.v-plan--dark p, .v-plan--dark ul, .v-plan--dark .v-price { color: var(--p-inv-muted); }
+.v-plan--dark .v-price b { color: var(--p-inv-ink); }
+.v-steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-6); counter-reset: s; }
+.v-steps li { counter-increment: s; border-top: 1px solid var(--line); padding-top: var(--s-4); }
+.v-steps li::before { content: "0" counter(s); display: block; font: 400 40px/1 var(--font-display); color: var(--accent); margin-bottom: var(--s-3); }
+.v-steps h3 { margin: 0 0 var(--s-2); }
+.v-steps p { margin: 0; color: var(--muted); }
+.v-promise { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--s-6); }
+.v-promise b { display: block; margin-bottom: var(--s-2); font: 400 clamp(22px, 2vw, 28px)/1.15 var(--font-display); }
+.rows .rows__name small { display: block; font-weight: 400; color: var(--muted); font-size: var(--t-body); }
+.v-promise span { color: var(--muted); }
+.v-note { max-width: 62ch; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.55; }
+.v-note p { margin: 0 0 var(--s-4); }
+.v-sign { color: var(--muted); font-size: 16px; }
+@media (max-width: 1023px) { .v-plans { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 767px) { .v-plans > .v-plan { grid-row: auto; display: flex; } }
+@media (max-width: 767px) {
+  .v-case, .v-pains li, .v-steps, .v-promise, .v-plans { grid-template-columns: 1fr; }
+}
+</style>
+<link rel="modulepreload" href="/assets/moments/moments.js">
+<link rel="modulepreload" href="/assets/moments/lib.js">
+<slot name="head" />
+<script is:inline>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
+</head>
+<body>
+<header class="nav nav--centre">
+  <div class="wrap nav__bar">
+    <a class="skip-link" href="#top">Ir para o conteúdo</a>
+    <a class="nav__logo" href="#top"><span class="mark" data-mark="dots" aria-hidden="true"></span>{nome}</a>
+    <nav class="nav__links" aria-label="Principal">
+      {nav.map(([href, label]) => <div class="nav__item"><a class="nav__link" href={href}>{label}</a></div>)}
+    </nav>
+    <div class="nav__actions"><a class="btn btn--primary" href={contato}>Pedir orçamento</a></div>
+    <button class="nav__toggle" type="button" aria-expanded="false" aria-label="Menu"><svg width="18" height="18" viewBox="0 0 18 18" aria-hidden="true"><path d="M2 5h14M2 13h14" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+  </div>
+</header>
+<main id="top"><slot /></main>
+<footer class="footer closing footer--dark ground-inverse" id="contato" aria-labelledby="close-h">
+  <div class="wrap">
+    <div class="grid v-close">
+      <div class="span-6">
+        <h2 id="close-h">Conte o que você precisa resolver</h2>
+        <p>A resposta vem com escopo, prazo e preço por escrito, antes de qualquer pagamento.</p>
+      </div>
+      <div class="span-5 start-8 v-contacts">
+        <a class="v-contact" href={whatsapp} target="_blank" rel="noopener">
+          <img src="/assets/icons/whatsapp.svg" alt="" width="32" height="32">
+          <span><b>Chamar no WhatsApp</b><small>{whatsappLabel}</small></span>
+          <svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true" style="width:14px;height:14px"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg>
+        </a>
+        <a class="v-contact" href={email}>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3.5 6.5 8.5 6.5 8.5-6.5"/></svg>
+          <span><b>Enviar e-mail</b><small>{emailEndereco}</small></span>
+          <svg class="m-arrow" viewBox="0 0 12 12" aria-hidden="true" style="width:14px;height:14px"><path class="m-arrow__stem" d="M1 6h8"/><path class="m-arrow__head" d="M4.5 2.5 8 6l-3.5 3.5"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="closing__links">
+      <div class="grid">
+        <div class="span-6 stack-4">
+          <a class="nav__logo" href="#top"><span class="mark" data-mark="dots" aria-hidden="true"></span>{nome}</a>
+          <p class="footer__lede">Sites, catálogos, sistemas e automações sob medida. Aracaju, Sergipe, atendendo todo o Brasil.</p>
+        </div>
+        <div class="span-3 start-7 footer__col"><h3>Página</h3><ul>{nav.map(([href, label]) => <li><a href={href}>{label}</a></li>)}</ul></div>
+        <div class="span-3 footer__col"><h3>Contato</h3><ul><li><a href={whatsapp} target="_blank" rel="noopener">WhatsApp</a></li><li><a href={email}>E-mail</a></li><li><a href="/#modelos">Ver os modelos</a></li></ul></div>
+      </div>
+      <div class="footer__legal"><span>&copy; 2026 {nome}</span></div>
+    </div>
+  </div>
+</footer>
+<script is:inline type="module" src="/assets/system.js"></script>
+</body>
+</html>

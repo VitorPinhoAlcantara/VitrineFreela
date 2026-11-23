@@ -1,0 +1,58 @@
+---
+import Variacao from '../../components/Variacao.astro';
+import { contato, cases, planos, passos, garantias, faq } from '../../lib/variacao';
+---
+<Variacao title="Variação 2: prova primeiro" nome="Vitor Alcantara">
+  <section class="hero hero--statement" data-enter aria-labelledby="hero-h">
+    <div class="wrap"><div class="hero-text hero__in">
+      <div>
+        <p class="v-kicker">Desenvolvedor full stack</p>
+        <h1 id="hero-h">Sites, sistemas e apps que já rodam em produção</h1>
+        <p class="hero__lead">Front, back, banco e servidor feitos pela mesma pessoa. Você fala com quem escreve o código, do orçamento à manutenção.</p>
+        <div class="btn-row"><a class="btn btn--primary" href={contato}>Pedir orçamento</a><a class="btn btn--secondary" href="#trabalhos">Ver trabalhos</a></div>
+      </div>
+      <dl class="hero__facts">
+        <div><dt>Front-end</dt><dd>React, Next.js, Astro</dd></div>
+        <div><dt>Back-end</dt><dd>NestJS, Prisma, Postgres</dd></div>
+        <div><dt>Servidor</dt><dd>Docker, Caddy, Cloudflare</dd></div>
+        <div><dt>Preço</dt><dd>Sites a partir de R$ 600</dd></div>
+      </dl>
+    </div></div>
+  </section>
+
+  <section class="section" id="trabalhos" style="--h: 2" aria-labelledby="trabalhos-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="trabalhos-h">Trabalhos. <span class="muted">Cada um com site, painel ou API de verdade.</span></h2></div>
+      {cases.map((c) => (
+        <article class="v-case">
+          <div><p class="v-kicker">{c.tipo}</p><p class="v-big">{c.nome}</p></div>
+          <div><p>{c.texto}</p><dl><dt>Entregue</dt><dd>{c.entregue}</dd><dt>Tecnologia</dt><dd>{c.stack}</dd></dl></div>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="section" id="como" aria-labelledby="como-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="como-h">Como um projeto anda</h2></div>
+      <ol class="v-steps">{passos.map((p) => <li><h3>{p.t}</h3><p>{p.d}</p></li>)}</ol>
+      <dl class="v-facts">{garantias.map((g) => <div><dt>{g.t}</dt><dd>{g.d}</dd></div>)}</dl>
+    </div>
+  </section>
+
+  <section class="section" id="precos" aria-labelledby="precos-h">
+    <div class="wrap grid grid--top">
+      <div class="span-4"><div class="section-head"><h2 id="precos-h">Preços de partida</h2><p>Mais a mensalidade de hospedagem e manutenção. O valor final sai do escopo.</p></div></div>
+      <ul class="rows span-8 start-5">
+        {planos.map((p) => <li><span class="rows__name">{p.nome}<small>{p.texto}</small></span><span class="rows__value">{p.preco}</span></li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section" id="perguntas" aria-labelledby="perguntas-h">
+    <div class="wrap grid grid--top">
+      <div class="span-4"><div class="section-head"><h2 id="perguntas-h">Perguntas frequentes</h2></div></div>
+      <div class="span-8 start-5 faq">{faq.map((f, i) => <details open={i === 0}><summary>{f.q}</summary><p>{f.a}</p></details>)}</div>
+    </div>
+  </section>
+</Variacao>

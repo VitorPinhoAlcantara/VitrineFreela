@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Oficina Exemplo: modelo de site para oficina</title>
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; } body { margin: 0; } html { scroll-behavior: smooth; }
+  .quero { position: fixed; right: 20px; bottom: calc(20px + env(safe-area-inset-bottom)); z-index: 10; padding: 13px 20px; border-radius: 999px; background: #111; color: #f4f2ee; font: 700 15px/1.2 "Archivo", system-ui, sans-serif; text-decoration: none; white-space: nowrap; box-shadow: 0 6px 24px #0004; }
+  .quero:hover { background: #2a2a2a; }
+  .quero:focus-visible { outline: 3px solid #111; outline-offset: 3px; }
+  @media (max-width: 760px) { .quero { right: 12px; bottom: calc(80px + env(safe-area-inset-bottom)); } }
+
+  .demo { --ink: #1b1d20; --bg: #f4f2ee; --mut: #5a5f66; --line: #1b1d2022; background: var(--bg); color: var(--ink); font: 400 17px/1.55 "Archivo", system-ui, sans-serif; min-height: 100vh; padding-bottom: 76px; }
+  .top, .hero, .sec, .foot { width: min(100% - 40px, 1040px); margin-inline: auto; }
+  .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 0; }
+  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
+  .mk { width: 22px; height: 22px; border-radius: 6px; background: var(--marca); }
+  .btn { display: inline-block; padding: 11px 18px; border-radius: 10px; background: var(--marca); color: #fff; font-weight: 600; font-size: 15px; text-decoration: none; text-align: center; }
+  .btn.big { padding: 15px 24px; font-size: 17px; }
+  .btn:hover { filter: brightness(.92); }
+  .btn:active { transform: translateY(1px); }
+  .lk { color: var(--ink); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
+  a:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+  .hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; padding: 56px 0 72px; }
+  h1 { font: 800 clamp(34px, 5.4vw, 60px)/1.02 "Archivo", sans-serif; letter-spacing: -0.03em; }
+  .lead { margin: 18px 0 26px; color: var(--mut); max-width: 46ch; font-size: 19px; }
+  .acts { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
+  .quote { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+  .q-h { font-weight: 700; margin-bottom: 8px; }
+  .q-f { margin-top: 14px; color: var(--mut); font-size: 15px; }
+  .quote ul, .rows { list-style: none; padding: 0; margin: 0; }
+  .quote li, .rows li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+  .quote li b, .rows li b { white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .sec { padding: 56px 0; }
+  .sec.dark { width: 100%; background: var(--ink); color: #f4f2ee; padding: 64px 0; }
+  .sec.dark > * { width: min(100% - 40px, 1040px); margin-inline: auto; }
+  h2 { font: 800 clamp(26px, 3.4vw, 38px)/1.1 "Archivo", sans-serif; letter-spacing: -0.02em; margin-bottom: 24px; }
+  .rows { max-width: 680px; }
+  .rows li { font-size: 18px; }
+  .steps { list-style: none; padding: 0; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; counter-reset: p; }
+  .steps li { display: grid; gap: 6px; counter-increment: p; }
+  .steps li::before { content: counter(p); width: 34px; height: 34px; border-radius: 50%; background: var(--marca); color: #fff; display: grid; place-items: center; font-weight: 700; }
+  .steps b { font-size: 20px; }
+  .steps span { color: #c9ccd0; }
+  .info { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
+  dl { display: grid; grid-template-columns: auto 1fr; gap: 10px 24px; margin: 0; }
+  dt { font-weight: 600; } dd { margin: 0; color: var(--mut); }
+  .addr { font-size: 20px; font-weight: 600; margin: 0 0 16px; }
+  .foot { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 24px 0 8px; border-top: 1px solid var(--line); color: var(--mut); font-size: 14px; }
+  .bar { display: none; }
+  @media (max-width: 760px) {
+    .top .btn { display: none; }
+    .hero { grid-template-columns: 1fr; gap: 32px; padding: 32px 0 48px; }
+    .steps, .info { grid-template-columns: 1fr; gap: 24px; }
+    .sec { padding: 40px 0; }
+    .bar { display: block; position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); background: var(--marca); color: #fff; text-align: center; padding: 15px; border-radius: 12px; font-weight: 700; text-decoration: none; z-index: 5; }
+  }
+
+</style>
+</head>
+<body>
+<div class="demo" style="--marca: #c2410c">
+  <header class="top">
+    <a class="logo" href="#topo"><span class="mk" aria-hidden="true"></span>Oficina Exemplo</a>
+    <a class="btn" href="#contato">Chamar no WhatsApp</a>
+  </header>
+  <main id="topo">
+    <section class="hero">
+      <div>
+        <h1>Revisão, freios e suspensão com preço combinado antes</h1>
+        <p class="lead">Traga o carro de manhã e saiba o valor antes de qualquer peça ser trocada. Atendimento em Aracaju.</p>
+        <div class="acts"><a class="btn big" href="#contato">Chamar no WhatsApp</a><a class="lk" href="#servicos">Ver os serviços</a></div>
+      </div>
+      <aside class="quote" aria-label="Exemplo de orçamento">
+        <p class="q-h">Orçamento</p>
+        <ul><li><span>Troca de óleo e filtro</span><b>R$ 180</b></li><li><span>Pastilhas de freio</span><b>R$ 240</b></li><li><span>Alinhamento e balanceamento</span><b>R$ 120</b></li></ul>
+        <p class="q-f">Valor aprovado por você antes de começar.</p>
+      </aside>
+    </section>
+    <section class="sec" id="servicos">
+      <h2>Serviços e preços</h2>
+      <ul class="rows"><li><span>Troca de óleo e filtro</span><b>R$ 180</b></li><li><span>Pastilhas de freio</span><b>R$ 240</b></li><li><span>Alinhamento e balanceamento</span><b>R$ 120</b></li><li><span>Suspensão, por eixo</span><b>R$ 350</b></li><li><span>Revisão completa</span><b>R$ 390</b></li></ul>
+    </section>
+    <section class="sec dark" id="como">
+      <h2>Como funciona</h2>
+      <ol class="steps">
+        <li><b>Você chama</b><span>Conte o problema pelo WhatsApp e combine o horário.</span></li>
+        <li><b>Você aprova o valor</b><span>Avaliamos o carro e passamos o preço antes de começar.</span></li>
+        <li><b>Você retira</b><span>Avisamos pelo WhatsApp quando o carro estiver pronto.</span></li>
+      </ol>
+    </section>
+    <section class="sec" id="contato">
+      <h2>Horários e endereço</h2>
+      <div class="info">
+        <dl><dt>Segunda a sexta</dt><dd>8h às 18h</dd><dt>Sábado</dt><dd>8h às 12h</dd><dt>Domingo</dt><dd>Fechado</dd></dl>
+        <div>
+          <p class="addr">Aracaju, Sergipe</p>
+          <a class="btn big" href="#contato">Chamar no WhatsApp</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="foot">
+    <span>Oficina Exemplo</span>
+    <span>Modelo de site feito por Alcantara</span>
+  </footer>
+  <a class="bar" href="#contato">Chamar no WhatsApp</a>
+</div>
+<a class="quero" href="https://wa.me/5579991360886?text=Ol%C3%A1!%20Vi%20o%20modelo%20de%20site%20para%20oficina%20e%20quero%20um%20assim." target="_blank" rel="noopener">Quero um assim</a>
+</body>
+</html>

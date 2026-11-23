@@ -1,0 +1,195 @@
+---
+import Variacao from '../components/Variacao.astro';
+import { contato, cases, pessoais, planos, sobMedida, faq, modelos, pedirModelo } from '../lib/variacao';
+const nav = [['#como', 'Como funciona'], ['#modelos', 'Modelos'], ['#precos', 'Preços'], ['#trabalhos', 'Trabalhos'], ['#perguntas', 'Perguntas']];
+const resumo = [
+  ['Preço', 'a partir de R$ 400'],
+  ['Mensalidade', 'hospedagem e ajustes'],
+  ['Pagamento', '50% + 50% na entrega'],
+  ['Domínio', 'no seu nome'],
+  ['Código e dados', 'seus'],
+  ['Atendimento', 'todo o Brasil'],
+];
+---
+<Variacao title="Alcantara: sites e sistemas sob medida com preço fechado" nome="Alcantara" nav={nav} indexar>
+  <section class="hero hero--split" data-enter aria-labelledby="hero-h">
+    <div class="wrap"><div class="hero-text grid hero__grid">
+      <div class="hero__text span-6">
+        <h1 id="hero-h">Sites e sistemas sob medida, com preço fechado antes da primeira linha de código</h1>
+        <p class="hero__lead">Do site da sua empresa ao sistema e às automações que organizam a operação. Você recebe escopo, prazo e valor por escrito e vê um modelo antes de assinar.</p>
+        <div class="btn-row"><a class="btn btn--primary" href={contato} target="_blank" rel="noopener">Pedir orçamento</a><a class="btn btn--secondary" href="#modelos">Ver os modelos</a></div>
+        <dl class="v-facts">
+          <div><dt>Sites</dt><dd>A partir de R$ 400</dd></div>
+          <div><dt>Sistemas</dt><dd>A partir de R$ 2.000</dd></div>
+          <div><dt>Antes do contrato</dt><dd>Modelo do projeto</dd></div>
+          <div><dt>Domínio e código</dt><dd>No seu nome</dd></div>
+        </dl>
+      </div>
+      <div class="hero__media span-6 start-7" role="img" aria-label="Exemplo de proposta com escopo, prazo e valor fechados">
+        <div class="site" aria-hidden="true">
+          <div class="site__top"><b>Proposta</b><span>Catálogo online</span></div>
+          <div class="site__title">Escopo fechado antes de começar</div>
+          <ul class="site__rows">
+            <li>Catálogo com fotos e preço<em>incluso</em></li>
+            <li>Pedido pelo WhatsApp<em>incluso</em></li>
+            <li>Painel para editar produtos<em>incluso</em></li>
+            <li>Domínio no seu nome<em>incluso</em></li>
+          </ul>
+          <div class="site__foot"><div><b>Prazo</b><span>3 semanas</span></div><div><b>Valor fechado</b><span>R$ 1.000 + R$ 100/mês</span></div></div>
+          <span class="site__btn">Aprovar proposta</span>
+        </div>
+      </div>
+    </div></div>
+  </section>
+
+  <section class="section ground-inverse" id="como" style="--h: 2; --hm: 2" data-moment="pinned-chapters" aria-labelledby="como-h">
+    <div class="wrap mo-pc__grid">
+      <div class="mo-pc__text">
+        <h2 id="como-h">Três passos até o seu projeto no ar</h2>
+        <ol class="mo-pc__steps">
+          <li class="mo-pc__step" tabindex="0">
+            <h3>Conversa</h3>
+            <p>Você conta o problema. Eu devolvo escopo, prazo e preço por escrito, e um modelo quando houver um do seu tipo.</p>
+            <figure class="mo-pc__visual" role="img" aria-label="Conversa no WhatsApp pedindo um catálogo e recebendo a proposta">
+              <div class="site" aria-hidden="true">
+                <div class="site__top"><b>WhatsApp</b><span>Hoje</span></div>
+                <p class="site__bubble">Oi! Preciso de um catálogo para a loja, com pedido pelo WhatsApp.</p>
+                <p class="site__bubble site__bubble--out">Fechado. Te mando escopo, prazo e preço por escrito, junto com um modelo.</p>
+                <p class="site__bubble">Perfeito, fico no aguardo.</p>
+              </div>
+            </figure>
+          </li>
+          <li class="mo-pc__step" tabindex="0">
+            <h3>Contrato</h3>
+            <p>Escopo fechado, 50% para começar e o restante na entrega. Nada de cobrança surpresa no meio.</p>
+            <figure class="mo-pc__visual" role="img" aria-label="Contrato com escopo, prazo, pagamento em duas partes e lista de ajustes">
+              <div class="site" aria-hidden="true">
+                <div class="site__top"><b>Contrato</b><span>Catálogo online</span></div>
+                <ul class="site__rows"><li>Escopo<em>por escrito</em></li><li>Prazo<em>3 semanas</em></li><li>Início<em>50%</em></li><li>Entrega<em>50%</em></li><li>Ajustes<em>listados</em></li></ul>
+                <span class="site__btn">Assinar</span>
+              </div>
+            </figure>
+          </li>
+          <li class="mo-pc__step" tabindex="0">
+            <h3>Entrega</h3>
+            <p>Publicado no seu domínio, com acesso a tudo. A mensalidade mantém no ar, seguro e atualizado.</p>
+            <figure class="mo-pc__visual" role="img" aria-label="Site publicado no domínio do cliente, com aviso de que está no ar">
+              <div class="site" aria-hidden="true">
+                <div class="site__addr"><i>suaempresa.com.br</i><span>No ar</span></div>
+                <div class="site__top"><b>Sua Empresa</b><span>Catálogo</span></div>
+                <div class="site__title">Escolha, monte o pedido e envie no WhatsApp</div>
+                <span class="site__btn">Ver catálogo</span>
+              </div>
+            </figure>
+          </li>
+        </ol>
+      </div>
+      <div class="mo-pc__visuals frame"></div>
+    </div>
+  </section>
+
+  <section class="section" id="modelos" aria-labelledby="modelos-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="modelos-h">Veja funcionando antes de contratar. <span class="muted">Modelos por tipo de negócio. O seu é feito do zero.</span></h2></div>
+      <div class="v-demos">
+        {modelos.map((d) => (
+          <article class="v-demo">
+            <span class={d.status === 'no-ar' ? 'v-tag v-tag--on' : 'v-tag'}>{d.status === 'no-ar' ? 'No ar' : 'Em breve'}</span>
+            <h3>{d.nome}</h3>
+            <p><b>{d.tipo}.</b> {d.texto}</p>
+            {d.status === 'no-ar'
+              ? <a class="link" href={d.href} data-umami-event={`modelo-${d.nome.toLowerCase()}`}>Ver o modelo</a>
+              : <a class="link" href={pedirModelo(d.nome.toLowerCase())} target="_blank" rel="noopener">Quero ver essa</a>}
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="precos" aria-labelledby="precos-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="precos-h">Preços de partida. <span class="muted">Você recebe o valor fechado antes de começar.</span></h2></div>
+      <div class="v-plans">
+        {planos.map((p) => (
+          <article class="v-plan">
+            <h3>{p.nome}</h3>
+            <p>{p.texto}</p>
+            <p class="v-price">{p.de && <><s>{p.de}</s> <small class="v-off">Desconto · vagas limitadas</small></>}<b>{p.preco}</b>{p.mes}</p>
+            <ul>{p.itens.map((i) => <li>{i}</li>)}</ul>
+            <a class="btn btn--primary" href={contato} target="_blank" rel="noopener">{p.reuniao ? 'Marcar conversa' : 'Pedir orçamento'}</a>
+          </article>
+        ))}
+      </div>
+      <div class="v-custom">
+        <div><h3>{sobMedida.nome}</h3><p>{sobMedida.texto}</p></div>
+        <ul>{sobMedida.itens.map((i) => <li>{i}</li>)}</ul>
+        <a class="btn btn--secondary" href={contato} target="_blank" rel="noopener">Marcar conversa</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="trabalhos" aria-labelledby="trabalhos-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="trabalhos-h">Projetos que já estão no ar</h2></div>
+      <div class="v-works">
+        {cases.filter((c) => c.logo).map((c) => (
+          <article class="v-work">
+            <div class="v-work__logo" style={`background:${c.fundo}`}><img src={c.logo} alt={`Logo ${c.nome}`} loading="lazy"></div>
+            <h3>{c.nome}</h3>
+            <p class="v-work__res">{c.resultado}</p>
+            <p>{c.tipo}. {c.entregue}.</p>
+            <small>{c.stack}</small>
+            <a class="link" href={c.link.href} target="_blank" rel="noopener">{c.link.label}</a>
+          </article>
+        ))}
+      </div>
+      <p class="v-others">Projetos pessoais: {pessoais.map((x, i) => <>{i > 0 && ' · '}<a href={x.href} target="_blank" rel="noopener">{x.nome}</a>, {x.texto}</>)}.</p>
+    </div>
+  </section>
+
+  <section class="section ground-surface" id="perguntas" aria-labelledby="perguntas-h">
+    <div class="wrap grid grid--top">
+      <div class="span-6">
+        <div class="section-head"><h2 id="perguntas-h">Perguntas antes de fechar</h2></div>
+        <div class="faq">{faq.map((f) => <details open><summary>{f.q}</summary><p>{f.a}</p></details>)}</div>
+      </div>
+      <div class="span-5 start-8">
+        <div class="site v-resumo" role="img" aria-label="Resumo: preço a partir de R$ 400, mensalidade de hospedagem e ajustes, pagamento 50% mais 50%, domínio, código e dados no seu nome, atendimento em todo o Brasil">
+          <div class="site__top" aria-hidden="true"><b>Resumo</b><span>Em uma olhada</span></div>
+          <ul class="site__rows" aria-hidden="true">{resumo.map(([k, v]) => <li>{k}<em>{v}</em></li>)}</ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (() => {
+      const sec = document.getElementById('como');
+      const steps = [...sec.querySelectorAll('.mo-pc__step')];
+      const cur = () => Math.max(0, steps.findIndex((s) => s.classList.contains('is-on')));
+      const go = (i) => {
+        i = Math.max(0, Math.min(steps.length - 1, i));
+        const smooth = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+        if (!sec.classList.contains('is-live')) return steps[i].scrollIntoView({ behavior: smooth, block: 'center' });
+        // o moment troca de passo pela posição do scroll: leva a página ao meio da faixa do passo i
+        const top = sec.getBoundingClientRect().top + scrollY;
+        scrollTo({ top: top + (sec.offsetHeight - innerHeight) * (i + 0.5) / steps.length, behavior: smooth });
+      };
+      sec.addEventListener('click', (e) => {
+        const s = e.target.closest('.mo-pc__step');
+        if (s) go(steps.indexOf(s));
+      });
+      sec.addEventListener('keydown', (e) => {
+        const s = e.target.closest('.mo-pc__step');
+        if (s && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); go(steps.indexOf(s)); }
+      });
+      addEventListener('keydown', (e) => {
+        if (!['ArrowLeft', 'ArrowRight'].includes(e.key) || e.target.closest('input, textarea, select')) return;
+        const r = sec.getBoundingClientRect();
+        if (r.top > innerHeight / 2 || r.bottom < innerHeight / 2) return;
+        e.preventDefault();
+        go(cur() + (e.key === 'ArrowRight' ? 1 : -1));
+      });
+    })();
+  </script>
+</Variacao>

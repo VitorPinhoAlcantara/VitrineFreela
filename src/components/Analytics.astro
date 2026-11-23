@@ -1,0 +1,29 @@
+---
+const ga = process.env.GA_ID;
+const pixel = process.env.META_PIXEL_ID;
+const umami = process.env.UMAMI_WEBSITE_ID;
+const site = process.env.SITE_URL;
+---
+{umami && <script is:inline defer src="/m/p.js" data-website-id={umami} data-domains={site ? new URL(site).hostname : undefined}></script>}
+{ga && <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ga}`}></script>}
+{ga && <script is:inline define:vars={{ ga }}>
+window.dataLayer = window.dataLayer || [];
+window.gtag = function () { dataLayer.push(arguments); };
+gtag('js', new Date());
+gtag('config', ga);
+</script>}
+{pixel && <script is:inline define:vars={{ pixel }}>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', pixel);
+fbq('track', 'PageView');
+</script>}
+{(ga || pixel || umami) && <script is:inline>
+document.addEventListener('click', (e) => {
+  const a = e.target.closest && e.target.closest('a[href^="mailto:"], a[href*="wa.me"]');
+  if (!a) return;
+  const canal = a.href.startsWith('mailto:') ? 'email' : 'whatsapp';
+  window.gtag && gtag('event', 'generate_lead', { method: canal });
+  window.fbq && fbq('track', 'Contact', { content_name: canal });
+  window.umami && umami.track('contato', { canal });
+});
+</script>}

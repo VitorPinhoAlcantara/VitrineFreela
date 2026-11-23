@@ -1,0 +1,12 @@
+services:
+  web:
+    build: .
+    container_name: vitrinefreela-web
+    restart: unless-stopped
+    ports:
+      - '20009:4321'
+    environment:
+      SITE_URL: ${SITE_URL:-}
+    env_file:
+      - path: .env
+        required: false

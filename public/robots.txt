@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /modelos/
+
+Sitemap: https://vitrine.alcantara.dev.br/sitemap.xml
