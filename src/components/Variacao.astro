@@ -1,6 +1,8 @@
 ---
 const { title, nome, indexar = false, nav = [['#trabalhos', 'Trabalhos'], ['#como', 'Como funciona'], ['#precos', 'Preços'], ['#perguntas', 'Perguntas']] } = Astro.props;
+import Analytics from './Analytics.astro';
 import { contato, whatsapp, whatsappLabel, email, emailEndereco } from '../lib/variacao';
+const descricao = 'Criação de sites, catálogo online, sistemas e automação no WhatsApp, com escopo e preço fechados antes de começar.';
 ---
 <!doctype html>
 <html lang="pt-BR" data-type="service" data-radius="soft" data-buttons="solid" data-motion>
@@ -9,12 +11,19 @@ import { contato, whatsapp, whatsappLabel, email, emailEndereco } from '../lib/v
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 {!indexar && <meta name="robots" content="noindex, nofollow">}
 <title>{title}</title>
-<meta name="description" content="Sites, catálogos, sistemas e automações sob medida, com escopo e preço fechados antes de começar.">
+<meta name="description" content={descricao}>
+{indexar && <link rel="canonical" href={Astro.site.href}>}
 <meta property="og:type" content="website">
+<meta property="og:url" content={Astro.site.href}>
+<meta property="og:locale" content="pt_BR">
+<meta property="og:site_name" content={nome}>
 <meta property="og:title" content={title}>
-<meta property="og:description" content="Sites, catálogos, sistemas e automações sob medida, com escopo e preço fechados antes de começar.">
+<meta property="og:description" content={descricao}>
 <meta name="twitter:card" content="summary_large_image">
-<meta property="og:image" content="/share.jpg">
+<meta property="og:image" content={new URL('/share.jpg', Astro.site).href}>
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Alcantara: sites e sistemas com preço fechado">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <meta name="theme-color" content="#f6f1e7">
 <meta name="site-kind" content="other">
@@ -225,6 +234,7 @@ html body footer.closing { height: auto !important; min-height: 0 !important; }
 <link rel="modulepreload" href="/assets/moments/moments.js">
 <link rel="modulepreload" href="/assets/moments/lib.js">
 <slot name="head" />
+{indexar && <Analytics />}
 <script is:inline>document.documentElement.classList.add('m-enter');setTimeout(()=>document.documentElement.classList.add('m-enter-done'),700)</script>
 </head>
 <body>

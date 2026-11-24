@@ -1,0 +1,13 @@
+---
+import Variacao from '../components/Variacao.astro';
+const nav = [['/#como', 'Como funciona'], ['/#modelos', 'Modelos'], ['/#precos', 'Preços'], ['/#trabalhos', 'Trabalhos'], ['/#perguntas', 'Perguntas']];
+---
+<Variacao title="Página não encontrada | Alcantara" nome="Alcantara" nav={nav}>
+  <section class="hero" aria-labelledby="erro-h">
+    <div class="wrap">
+      <h1 id="erro-h">Página não encontrada</h1>
+      <p class="hero__lead">O endereço mudou ou foi digitado errado.</p>
+      <div class="btn-row"><a class="btn btn--primary" href="/">Voltar ao início</a></div>
+    </div>
+  </section>
+</Variacao>
