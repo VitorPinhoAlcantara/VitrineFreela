@@ -94,9 +94,10 @@ const resumo = [
       <div class="section-head"><h2 id="modelos-h">Veja funcionando antes de contratar. <span class="muted">Modelos por tipo de projeto. O seu é feito do zero.</span></h2></div>
       <div class="v-tipos">
         {tipos.map(({ t, itens }) => (
-          <div class="v-tipo">
-            <h3>{t}</h3>
-            {itens.length === 0 ? <p class="v-breve">Em breve</p> : <ul>
+          itens.length === 0 ? <div class="v-tipo"><h3>{t}</h3><p class="v-breve">Em breve</p></div> :
+          <details class="v-tipo">
+            <summary><h3>{t}</h3><span class="v-qtd">{itens.length} {itens.length > 1 ? 'modelos' : 'modelo'}</span></summary>
+            <ul>
               {itens.map((m) => (
                 <li>
                   <p><b>{m.nome}.</b> {m.texto}</p>
@@ -105,8 +106,8 @@ const resumo = [
                     : <span class="btn btn--secondary is-off" aria-disabled="true">Ver modelo</span>}
                 </li>
               ))}
-            </ul>}
-          </div>
+            </ul>
+          </details>
         ))}
       </div>
     </div>
@@ -115,6 +116,7 @@ const resumo = [
   <section class="section" id="precos" aria-labelledby="precos-h">
     <div class="wrap">
       <div class="section-head"><h2 id="precos-h">Preços de partida. <span class="muted">Você recebe o valor fechado antes de começar.</span></h2></div>
+      <div class="v-precos">
       <div class="v-plans">
         {planos.map((p) => (
           <article class="v-plan">
@@ -127,9 +129,10 @@ const resumo = [
         ))}
       </div>
       <div class="v-custom">
-        <div><h3>{sobMedida.nome}</h3><p>{sobMedida.texto}</p></div>
+        <div><h3>{sobMedida.nome}</h3><p>{sobMedida.texto}</p><p class="v-price v-mob"><b>Sob consulta</b>Escopo definido junto</p></div>
         <ul>{sobMedida.itens.map((i) => <li>{i}</li>)}</ul>
         <a class="btn btn--secondary" href={contato} target="_blank" rel="noopener">Marcar conversa</a>
+      </div>
       </div>
     </div>
   </section>
@@ -157,7 +160,7 @@ const resumo = [
     <div class="wrap grid grid--top">
       <div class="span-6">
         <div class="section-head"><h2 id="perguntas-h">Perguntas antes de fechar</h2></div>
-        <div class="faq">{faq.map((f) => <details open><summary>{f.q}</summary><p>{f.a}</p></details>)}</div>
+        <div class="faq">{faq.map((f) => <details><summary>{f.q}</summary><p>{f.a}</p></details>)}</div>
       </div>
       <div class="span-5 start-8">
         <div class="site v-resumo" role="img" aria-label="Resumo: preço a partir de R$ 400, mensalidade de hospedagem e ajustes, pagamento 50% mais 50%, domínio, código e dados no seu nome, atendimento em todo o Brasil">
@@ -169,12 +172,23 @@ const resumo = [
   </section>
 
   <script is:inline>
+    if (matchMedia('(min-width: 768px)').matches) document.querySelectorAll('details.v-tipo, .faq details').forEach((d) => (d.open = true));
     (() => {
       const sec = document.getElementById('como');
       const steps = [...sec.querySelectorAll('.mo-pc__step')];
-      const cur = () => Math.max(0, steps.findIndex((s) => s.classList.contains('is-on')));
+      const phone = matchMedia('(max-width: 639px)');
+      let tab = 0, auto = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const set = (i) => { tab = i; steps.forEach((s, n) => { s.classList.toggle('is-tab', n === i); n === i ? s.setAttribute('aria-current', 'step') : s.removeAttribute('aria-current'); }); };
+      set(0);
+      // no celular as abas avançam sozinhas enquanto a seção está na tela, até a pessoa tocar numa
+      setInterval(() => {
+        const r = sec.getBoundingClientRect();
+        if (auto && phone.matches && r.top < innerHeight * 0.6 && r.bottom > innerHeight * 0.4) set((tab + 1) % steps.length);
+      }, 4500);
+      const cur = () => phone.matches ? tab : Math.max(0, steps.findIndex((s) => s.classList.contains('is-on')));
       const go = (i) => {
         i = Math.max(0, Math.min(steps.length - 1, i));
+        if (phone.matches) { auto = false; return set(i); }
         const smooth = matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
         if (!sec.classList.contains('is-live')) return steps[i].scrollIntoView({ behavior: smooth, block: 'center' });
         // o moment troca de passo pela posição do scroll: leva a página ao meio da faixa do passo i
@@ -183,7 +197,16 @@ const resumo = [
       };
       sec.addEventListener('click', (e) => {
         const s = e.target.closest('.mo-pc__step');
-        if (s) go(steps.indexOf(s));
+        if (!s) return;
+        // no celular, tocar no texto ou na tela do passo avança (metade direita) ou volta (metade esquerda)
+        if (phone.matches && !e.target.closest('h3')) return go(tab + (e.clientX > innerWidth / 2 ? 1 : -1));
+        go(steps.indexOf(s));
+      });
+      let x0 = 0, y0 = 0;
+      sec.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+      sec.addEventListener('touchend', (e) => {
+        const dx = e.changedTouches[0].clientX - x0, dy = e.changedTouches[0].clientY - y0;
+        if (phone.matches && Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy) * 1.5) go(tab + (dx < 0 ? 1 : -1));
       });
       sec.addEventListener('keydown', (e) => {
         const s = e.target.closest('.mo-pc__step');

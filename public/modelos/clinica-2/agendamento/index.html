@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Agendamento | Véra Estética</title>
+<meta name="description" content="Escolha tratamento, unidade, profissional, dia e horário.">
+<meta name="theme-color" content="#4a2c22">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='16' fill='%234a2c22'/%3E%3Cpath d='M9 10l7 13 7-13' fill='none' stroke='%23efe5dc' stroke-width='2.4'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600&family=Marcellus&display=swap">
+<link rel="stylesheet" href="/modelos/clinica-2/estilo.css">
+<script src="/modelos/clinica-2/script.js" defer></script>
+</head>
+<body>
+<a class="pular" href="#conteudo">Pular para o conteúdo</a>
+<header class="topo"><div class="wrap">
+  <a class="marca" href="/modelos/clinica-2/">véra<span>estética</span></a>
+  <nav class="topo__nav" aria-label="Principal"><a href="/modelos/clinica-2/">Início</a><a href="/modelos/clinica-2/tratamentos/">Tratamentos</a><a href="/modelos/clinica-2/clinica/">A clínica</a><a href="/modelos/clinica-2/contato/">Contato</a></nav>
+  <a class="btn btn--topo" href="/modelos/clinica-2/agendamento/">Agendar consulta</a>
+  <button type="button" class="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu"><span></span><span></span></button>
+</div><nav id="menu" hidden aria-label="Menu do celular"><a href="/modelos/clinica-2/">Início</a><a href="/modelos/clinica-2/tratamentos/">Tratamentos</a><a href="/modelos/clinica-2/clinica/">A clínica</a><a href="/modelos/clinica-2/contato/">Contato</a><a class="btn" href="/modelos/clinica-2/agendamento/">Agendar consulta</a></nav></header>
+<main id="conteudo">
+<section class="agenda"><div class="wrap"><div id="agenda-cab"><h1>Agende <em>seu horário</em></h1><p>Escolha o tratamento, a unidade e a profissional. Os horários livres aparecem na hora.</p></div>
+<form id="agenda" novalidate><div class="agenda__passos">
+  <fieldset><legend>1. Tratamento</legend><div class="ops ops--2"><label class="op"><input type="radio" name="tratamento" value="consulta" checked><span><b>Consulta e mapeamento facial</b><small>45 min, a partir de R$ 280</small></span></label><label class="op"><input type="radio" name="tratamento" value="laser"><span><b>Laser para manchas e textura</b><small>45 min, a partir de R$ 890</small></span></label><label class="op"><input type="radio" name="tratamento" value="toxina"><span><b>Toxina botulínica</b><small>40 min, a partir de R$ 1.250</small></span></label><label class="op"><input type="radio" name="tratamento" value="bioestimulador"><span><b>Bioestimulador de colágeno</b><small>60 min, a partir de R$ 1.950</small></span></label><label class="op"><input type="radio" name="tratamento" value="ultrassom"><span><b>Ultrassom microfocado</b><small>75 min, a partir de R$ 2.400</small></span></label><label class="op"><input type="radio" name="tratamento" value="corporal"><span><b>Drenagem e firmeza corporal</b><small>60 min, a partir de R$ 320</small></span></label></div></fieldset>
+  <fieldset><legend>2. Unidade</legend><div class="ops ops--2"><label class="op"><input type="radio" name="unidade" value="jardins" checked><span><b>Jardins</b><small>Rua das Amendoeiras, 310, Jardins, Aracaju</small></span></label><label class="op"><input type="radio" name="unidade" value="atalaia"><span><b>Atalaia</b><small>Rua do Farol Velho, 95, Atalaia, Aracaju</small></span></label></div></fieldset>
+  <fieldset><legend>3. Profissional</legend><div class="ops ops--2"><label class="op"><input type="radio" name="profissional" value="camila" checked><span><b>Dra. Camila Vasconcelos</b><small>Biomédica esteta, fundadora</small></span></label><label class="op"><input type="radio" name="profissional" value="lucas"><span><b>Dr. Lucas Nogueira</b><small>Médico dermatologista</small></span></label><label class="op"><input type="radio" name="profissional" value="helena"><span><b>Helena Prado</b><small>Fisioterapeuta dermatofuncional</small></span></label></div></fieldset>
+  <fieldset><legend>4. Dia e horário</legend><div class="ops ops--dias" id="dias"></div><p class="horas-t" id="horas-t" aria-live="polite"></p><div class="ops ops--horas" id="horas"></div><p class="erro" id="hora-erro" role="alert"></p></fieldset>
+  <fieldset><legend>5. Seus dados</legend><div class="dados"><div class="campo"><label for="nome">Nome completo</label><input id="nome" name="nome" placeholder="Ex: Beatriz Lima" aria-describedby="nome-erro" autocomplete="name"><p class="erro" id="nome-erro" role="alert"></p></div><div class="campo"><label for="fone">WhatsApp com DDD</label><input id="fone" name="fone" placeholder="(79) 90000-0000" aria-describedby="fone-erro" type="tel" inputmode="numeric" autocomplete="tel"><p class="erro" id="fone-erro" role="alert"></p></div><div class="campo"><label for="email">E-mail</label><input id="email" name="email" placeholder="beatriz@exemplo.com" aria-describedby="email-erro" type="email" autocomplete="email"><p class="erro" id="email-erro" role="alert"></p></div><div class="campo"><label for="obs">Observações (opcional)</label><input id="obs" name="obs" placeholder="Ex: alergia a lidocaína"></div></div></fieldset>
+</div>
+<aside class="resumo" aria-label="Resumo da reserva"><h2>Resumo</h2><dl><div><dt>Tratamento</dt><dd id="r-trat"></dd></div><div><dt>Unidade</dt><dd id="r-unid"></dd></div><div><dt>Profissional</dt><dd id="r-prof"></dd></div><div><dt>Dia</dt><dd id="r-data"></dd></div><div><dt>Horário</dt><dd id="r-hora"></dd></div><div><dt>Duração</dt><dd id="r-min"></dd></div></dl><p class="preco"><small>A partir de</small><span id="r-preco"></span></p><button class="btn" type="submit">Confirmar horário</button><p class="nota">Pagamento na clínica. Cancelamento sem custo até 12 horas antes.</p></aside></form>
+<div id="ok" hidden tabindex="-1"><p class="cat" id="ok-cod"></p><h1>Horário <em>reservado</em></h1><p id="ok-txt"></p><dl id="ok-dl"></dl><div class="botoes"><button type="button" class="btn" id="ics">Adicionar ao calendário</button><button type="button" class="btn btn--linha" id="ok-zap">Enviar no WhatsApp</button><button type="button" class="link" id="cancelar">Cancelar reserva</button><button type="button" class="link" id="outra">Agendar outro horário</button></div><p class="nota">Simulação: a reserva fica só neste navegador. No site real, a clínica recebe o pedido e a paciente recebe o lembrete.</p></div>
+</div></section>
+</main>
+<footer class="rodape"><div class="wrap">
+  <div class="rodape__g"><div><a class="marca" href="/modelos/clinica-2/">véra<span>estética</span></a><p>Dermatologia e estética em Aracaju.</p></div><p><b>Jardins</b><br>Rua das Amendoeiras, 310<br>(79) 90000-0001</p><p><b>Atalaia</b><br>Rua do Farol Velho, 95<br>(79) 90000-0002</p><nav aria-label="Rodapé"><a href="/modelos/clinica-2/">Início</a><a href="/modelos/clinica-2/tratamentos/">Tratamentos</a><a href="/modelos/clinica-2/clinica/">A clínica</a><a href="/modelos/clinica-2/contato/">Contato</a></nav></div>
+  <div class="rodape__f"><p>Modelo de exemplo: clínica, profissionais, preços e contatos são fictícios. Cada site é feito do zero.</p><a href="/#modelos">Ver outros modelos</a></div>
+</div></footer>
+<a class="quero" href="https://wa.me/5579991360886?text=Ol%C3%A1!%20Vi%20o%20modelo%20de%20site%20com%20agenda%20para%20cl%C3%ADnica%20e%20quero%20um%20assim." target="_blank" rel="noopener">Quero um assim</a>
+<dialog id="zap" aria-labelledby="zap-t"><form method="dialog"><button class="zap__x" aria-label="Fechar">×</button></form>
+  <h2 id="zap-t"></h2><p>Este é um modelo com contatos fictícios. No site real, a pessoa já sai daqui com:</p><p id="zap-msg"></p>
+  <a class="btn" href="https://wa.me/5579991360886?text=Ol%C3%A1!%20Vi%20o%20modelo%20de%20site%20com%20agenda%20para%20cl%C3%ADnica%20e%20quero%20um%20assim." target="_blank" rel="noopener">Quero um site assim</a></dialog>
+</body>
+</html>

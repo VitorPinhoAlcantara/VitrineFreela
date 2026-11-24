@@ -2,116 +2,169 @@
 <html lang="pt-BR">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="robots" content="noindex">
-<title>Oficina Exemplo: modelo de site para oficina</title>
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>MotorHaus: oficina mecânica em Aracaju</title>
+<meta name="description" content="Modelo de site para oficina mecânica, com serviços, preços e agendamento pelo WhatsApp.">
+<meta name="theme-color" content="#0D1117">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230D1117'/%3E%3Cpath d='M8 23V9h3l5 7 5-7h3v14h-4v-7l-4 5-4-5v7z' fill='%23F97316'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400..800&display=swap" rel="stylesheet">
-<style>
-  * { box-sizing: border-box; } body { margin: 0; } html { scroll-behavior: smooth; }
-  .quero { position: fixed; right: 20px; bottom: calc(20px + env(safe-area-inset-bottom)); z-index: 10; padding: 13px 20px; border-radius: 999px; background: #111; color: #f4f2ee; font: 700 15px/1.2 "Archivo", system-ui, sans-serif; text-decoration: none; white-space: nowrap; box-shadow: 0 6px 24px #0004; }
-  .quero:hover { background: #2a2a2a; }
-  .quero:focus-visible { outline: 3px solid #111; outline-offset: 3px; }
-  @media (max-width: 760px) { .quero { right: 12px; bottom: calc(80px + env(safe-area-inset-bottom)); } }
-
-  .demo { --ink: #1b1d20; --bg: #f4f2ee; --mut: #5a5f66; --line: #1b1d2022; background: var(--bg); color: var(--ink); font: 400 17px/1.55 "Archivo", system-ui, sans-serif; min-height: 100vh; padding-bottom: 76px; }
-  .top, .hero, .sec, .foot { width: min(100% - 40px, 1040px); margin-inline: auto; }
-  .top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 0; }
-  .logo { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; color: var(--ink); text-decoration: none; letter-spacing: -0.01em; }
-  .mk { width: 22px; height: 22px; border-radius: 6px; background: var(--marca); }
-  .btn { display: inline-block; padding: 11px 18px; border-radius: 10px; background: var(--marca); color: #fff; font-weight: 600; font-size: 15px; text-decoration: none; text-align: center; }
-  .btn.big { padding: 15px 24px; font-size: 17px; }
-  .btn:hover { filter: brightness(.92); }
-  .btn:active { transform: translateY(1px); }
-  .lk { color: var(--ink); font-weight: 600; text-decoration: underline; text-underline-offset: 4px; }
-  a:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
-  .hero { display: grid; grid-template-columns: 1.2fr 1fr; gap: 48px; align-items: center; padding: 56px 0 72px; }
-  h1 { font: 800 clamp(34px, 5.4vw, 60px)/1.02 "Archivo", sans-serif; letter-spacing: -0.03em; }
-  .lead { margin: 18px 0 26px; color: var(--mut); max-width: 46ch; font-size: 19px; }
-  .acts { display: flex; align-items: center; gap: 22px; flex-wrap: wrap; }
-  .quote { background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
-  .q-h { font-weight: 700; margin-bottom: 8px; }
-  .q-f { margin-top: 14px; color: var(--mut); font-size: 15px; }
-  .quote ul, .rows { list-style: none; padding: 0; margin: 0; }
-  .quote li, .rows li { display: flex; justify-content: space-between; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--line); }
-  .quote li b, .rows li b { white-space: nowrap; font-variant-numeric: tabular-nums; }
-  .sec { padding: 56px 0; }
-  .sec.dark { width: 100%; background: var(--ink); color: #f4f2ee; padding: 64px 0; }
-  .sec.dark > * { width: min(100% - 40px, 1040px); margin-inline: auto; }
-  h2 { font: 800 clamp(26px, 3.4vw, 38px)/1.1 "Archivo", sans-serif; letter-spacing: -0.02em; margin-bottom: 24px; }
-  .rows { max-width: 680px; }
-  .rows li { font-size: 18px; }
-  .steps { list-style: none; padding: 0; margin: 0 auto; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; counter-reset: p; }
-  .steps li { display: grid; gap: 6px; counter-increment: p; }
-  .steps li::before { content: counter(p); width: 34px; height: 34px; border-radius: 50%; background: var(--marca); color: #fff; display: grid; place-items: center; font-weight: 700; }
-  .steps b { font-size: 20px; }
-  .steps span { color: #c9ccd0; }
-  .info { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-  dl { display: grid; grid-template-columns: auto 1fr; gap: 10px 24px; margin: 0; }
-  dt { font-weight: 600; } dd { margin: 0; color: var(--mut); }
-  .addr { font-size: 20px; font-weight: 600; margin: 0 0 16px; }
-  .foot { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding: 24px 0 8px; border-top: 1px solid var(--line); color: var(--mut); font-size: 14px; }
-  .bar { display: none; }
-  @media (max-width: 760px) {
-    .top .btn { display: none; }
-    .hero { grid-template-columns: 1fr; gap: 32px; padding: 32px 0 48px; }
-    .steps, .info { grid-template-columns: 1fr; gap: 24px; }
-    .sec { padding: 40px 0; }
-    .bar { display: block; position: fixed; left: 12px; right: 12px; bottom: calc(12px + env(safe-area-inset-bottom)); background: var(--marca); color: #fff; text-align: center; padding: 15px; border-radius: 12px; font-weight: 700; text-decoration: none; z-index: 5; }
-  }
-
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=DM+Sans:opsz,wght@9..40,400..700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/modelos/oficina-1/estilo.css">
+<script src="/modelos/oficina-1/script.js" defer></script>
 </head>
-<body>
-<div class="demo" style="--marca: #c2410c">
-  <header class="top">
-    <a class="logo" href="#topo"><span class="mk" aria-hidden="true"></span>Oficina Exemplo</a>
-    <a class="btn" href="#contato">Chamar no WhatsApp</a>
-  </header>
-  <main id="topo">
-    <section class="hero">
-      <div>
-        <h1>Revisão, freios e suspensão com preço combinado antes</h1>
-        <p class="lead">Traga o carro de manhã e saiba o valor antes de qualquer peça ser trocada. Atendimento em Aracaju.</p>
-        <div class="acts"><a class="btn big" href="#contato">Chamar no WhatsApp</a><a class="lk" href="#servicos">Ver os serviços</a></div>
+<body class="bg-[#F8F9FA] text-[#0D1117] antialiased selection:bg-[#C2410C] selection:text-white">
+<a href="#conteudo" class="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:bg-white focus:p-3">Pular para o conteúdo</a>
+<header class="sticky top-0 z-40 bg-[#0D1117]/95 backdrop-blur-md border-b border-slate-800/80">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between gap-8">
+    <a href="/modelos/oficina-1/" class="flex items-center min-h-11 font-display text-xl font-bold tracking-tight text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#F97316]">Motor<span class="text-[#F97316]">Haus</span></a>
+    <nav aria-label="Principal" class="hidden md:flex items-center gap-7 text-base font-medium text-slate-300"><a href="/modelos/oficina-1/" aria-current="page" class="flex items-center min-h-11 hover:text-white underline-offset-8 decoration-2 decoration-[#F97316] hover:underline aria-[current=page]:text-white aria-[current=page]:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#F97316]">Início</a><a href="/modelos/oficina-1/#sobre" class="flex items-center min-h-11 hover:text-white underline-offset-8 decoration-2 decoration-[#F97316] hover:underline aria-[current=page]:text-white aria-[current=page]:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#F97316]">Sobre nós</a><a href="/modelos/oficina-1/servicos/" class="flex items-center min-h-11 hover:text-white underline-offset-8 decoration-2 decoration-[#F97316] hover:underline aria-[current=page]:text-white aria-[current=page]:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#F97316]">Serviços</a><a href="/modelos/oficina-1/contato/" class="flex items-center min-h-11 hover:text-white underline-offset-8 decoration-2 decoration-[#F97316] hover:underline aria-[current=page]:text-white aria-[current=page]:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#F97316]">Contato</a></nav>
+    <div class="flex items-center gap-3">
+      <a href="#agendamento" class="hidden sm:inline-flex items-center min-h-11 px-4 text-sm font-semibold text-white bg-[#C2410C] hover:bg-[#9A3412] rounded-md transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#F97316]">Agendar horário</a>
+      <button type="button" id="menu-btn" aria-expanded="false" aria-controls="menu" aria-label="Abrir menu" class="md:hidden inline-flex items-center justify-center w-11 h-11 text-slate-200 rounded-md border border-slate-700 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#F97316]"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button>
+    </div>
+  </div>
+  <nav id="menu" hidden aria-label="Menu do celular" class="md:hidden bg-[#0D1117] border-t border-slate-800 px-4 py-4"><a href="/modelos/oficina-1/" aria-current="page" class="flex items-center min-h-12 px-3 text-base font-medium text-slate-200 hover:bg-slate-800/70 rounded-md aria-[current=page]:text-[#F97316]">Início</a><a href="/modelos/oficina-1/#sobre" class="flex items-center min-h-12 px-3 text-base font-medium text-slate-200 hover:bg-slate-800/70 rounded-md aria-[current=page]:text-[#F97316]">Sobre nós</a><a href="/modelos/oficina-1/servicos/" class="flex items-center min-h-12 px-3 text-base font-medium text-slate-200 hover:bg-slate-800/70 rounded-md aria-[current=page]:text-[#F97316]">Serviços</a><a href="/modelos/oficina-1/contato/" class="flex items-center min-h-12 px-3 text-base font-medium text-slate-200 hover:bg-slate-800/70 rounded-md aria-[current=page]:text-[#F97316]">Contato</a></nav>
+</header>
+<main id="conteudo">
+<section id="topo" class="bg-[#0D1117] text-white">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-12 lg:pt-14 lg:pb-16"><div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-stretch">
+    <div class="lg:col-span-6 flex flex-col justify-center">
+      <p class="text-sm text-slate-300 tracking-wide mb-4">Oficina mecânica em Aracaju, nacionais e importados</p>
+      <h1 class="font-display text-[clamp(2.25rem,4vw,3.6rem)] font-bold leading-[1.08] tracking-tight text-balance max-w-xl">Mecânica de precisão com orçamento aprovado antes do serviço.</h1>
+      <p class="mt-5 text-base sm:text-lg text-slate-300 leading-relaxed max-w-xl">Primeiro a gente mede, depois mostra as fotos no seu WhatsApp. Só então você decide o que vale a pena fazer.</p>
+      <div class="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3"><a href="#agendamento" class="inline-flex items-center justify-center gap-2 min-h-12 px-6 py-3 text-sm sm:text-base font-semibold text-white bg-[#C2410C] hover:bg-[#9A3412] rounded-md transition-colors duration-150 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#F97316]">Pedir orçamento<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a><a href="/modelos/oficina-1/servicos/" class="inline-flex items-center min-h-11 text-base font-medium text-slate-200 hover:text-white underline underline-offset-4 decoration-slate-600 hover:decoration-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#F97316]">Ver serviços e valores</a></div>
+    </div>
+    <div class="lg:col-span-6"><img src="/modelos/oficina-1/img/oficina.webp" width="1376" height="768" alt="Mecânico com tablet examinando o motor de um carro no elevador" class="w-full h-full aspect-video lg:aspect-auto lg:min-h-[440px] object-cover object-[70%_50%] rounded-lg border border-slate-800" fetchpriority="high"></div>
+  </div></div>
+  <div class="border-t border-slate-800/90 bg-[#11161D]"><dl class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"><div class="flex flex-col-reverse justify-end gap-1"><dt class="text-sm text-slate-300 leading-snug">O ano em que abrimos, com um elevador só</dt><dd class="font-mono tabular-nums text-2xl sm:text-3xl font-semibold">2009</dd></div><div class="flex flex-col-reverse justify-end gap-1"><dt class="text-sm text-slate-300 leading-snug">Para o diagnóstico inicial com scanner</dt><dd class="font-mono tabular-nums text-2xl sm:text-3xl font-semibold">40 min</dd></div><div class="flex flex-col-reverse justify-end gap-1"><dt class="text-sm text-slate-300 leading-snug">De garantia por escrito em peça e mão de obra</dt><dd class="font-mono tabular-nums text-2xl sm:text-3xl font-semibold">12 meses</dd></div><div class="flex flex-col-reverse justify-end gap-1"><dt class="text-sm text-slate-300 leading-snug">Nota média dos clientes no Google</dt><dd class="font-mono tabular-nums text-2xl sm:text-3xl font-semibold">4,9 / 5</dd></div></dl></div>
+</section>
+<section id="sobre" class="py-16 lg:py-24 bg-white border-b border-slate-200 scroll-mt-16"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16">
+  <div class="lg:col-span-7"><p class="text-sm font-medium text-[#C2410C] tracking-wide mb-2">Sobre nós</p><h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#0D1117] text-balance">A MotorHaus nasceu de uma peça que não precisava ser trocada.</h2>
+    <div class="mt-6 space-y-4 text-base sm:text-lg text-slate-600 leading-relaxed max-w-[62ch]">
+      <p>Em 2009, Renato Siqueira era mecânico de concessionária e viu uma professora parcelar em dez vezes um módulo de injeção. O defeito era um fio partido no chicote. Ele avisou, ouviu que o serviço já estava fechado e pediu demissão no mês seguinte.</p>
+      <p>Abriu a própria oficina com uma regra: nenhuma peça é trocada antes de um teste mostrar que ela falhou. Parece óbvio, mas dá trabalho. É preciso equipamento, tempo e disposição para dizer ao cliente que o carro não tem nada.</p>
+      <p>Helena, esposa de Renato e contadora, assumiu a recepção e fez a segunda regra: o orçamento precisa ser entendido por quem não sabe nada de carro. Por isso cada item chega com foto, preço e uma linha explicando o que acontece se você não fizer agora.</p>
+    </div>
+    <blockquote class="mt-8 pl-5 border-l-4 border-[#C2410C] font-display text-xl sm:text-2xl font-semibold leading-snug text-[#0D1117]">“Se eu não consigo te mostrar o defeito, eu não posso te cobrar pelo conserto.”<footer class="mt-3 font-sans text-base font-normal text-slate-500">Renato Siqueira, fundador</footer></blockquote>
+  </div>
+  <ol class="lg:col-span-5 self-center divide-y divide-slate-200 border-y border-slate-200"><li class="py-5 grid grid-cols-[4.5rem_1fr] gap-4"><span class="font-mono tabular-nums text-lg font-semibold text-[#C2410C]">2009</span><div><h3 class="font-display text-lg font-semibold">A garagem</h3><p class="mt-1 text-base text-slate-600 leading-relaxed">Renato deixa a concessionária depois de 11 anos e abre em uma garagem alugada, com um elevador usado.</p></div></li><li class="py-5 grid grid-cols-[4.5rem_1fr] gap-4"><span class="font-mono tabular-nums text-lg font-semibold text-[#C2410C]">2014</span><div><h3 class="font-display text-lg font-semibold">O osciloscópio</h3><p class="mt-1 text-base text-slate-600 leading-relaxed">O dinheiro da reforma da fachada vira equipamento. O retorno de carro com o mesmo defeito quase acaba.</p></div></li><li class="py-5 grid grid-cols-[4.5rem_1fr] gap-4"><span class="font-mono tabular-nums text-lg font-semibold text-[#C2410C]">2019</span><div><h3 class="font-display text-lg font-semibold">A parede de vidro</h3><p class="mt-1 text-base text-slate-600 leading-relaxed">Na mudança para os Jardins, Helena pede uma recepção de onde o cliente enxergue o próprio carro.</p></div></li><li class="py-5 grid grid-cols-[4.5rem_1fr] gap-4"><span class="font-mono tabular-nums text-lg font-semibold text-[#C2410C]">Hoje</span><div><h3 class="font-display text-lg font-semibold">Sete pessoas, quatro elevadores</h3><p class="mt-1 text-base text-slate-600 leading-relaxed">O primeiro aprendiz, Davi, agora chefia a oficina. Renato ainda faz o teste de rua.</p></div></li></ol>
+</div></div></section>
+<section id="servicos" class="py-16 lg:py-24 bg-[#F8F9FA] border-b border-slate-200"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-6 pb-10 border-b border-slate-200"><div class="max-w-2xl"><p class="text-sm font-medium text-[#C2410C] tracking-wide mb-2">Serviços</p><h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#0D1117] text-balance">O preço inicial e o prazo você sabe antes de vir.</h2></div><a href="/modelos/oficina-1/servicos/" class="inline-flex items-center gap-2 min-h-11 text-base font-semibold text-[#C2410C] underline underline-offset-4 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#F97316]">Ver os 12 serviços<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg></a></div>
+  <div class="mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"><article data-cat="revisao" class="flex flex-col justify-between p-6 sm:p-7 rounded-lg border border-slate-200 bg-white md:col-span-2">
+  <div>
+    <div class="flex items-center justify-between gap-4 text-sm text-slate-500 mb-3"><span>Revisão e motor</span><span class="font-mono tabular-nums text-slate-600 whitespace-nowrap">2h</span></div>
+    <h3 class="font-display text-xl sm:text-2xl font-bold tracking-tight text-[#0D1117]">Revisão preventiva programada</h3>
+    <p class="mt-2.5 text-base text-slate-600 leading-relaxed max-w-2xl">Seguimos o plano da montadora para a sua quilometragem, conferimos 48 itens e enviamos o relatório com fotos pelo WhatsApp.</p>
+    <ul class="mt-5 space-y-2 border-t border-slate-100 pt-4"><li class="flex items-start gap-2.5 text-sm text-slate-700"><svg class="w-4 h-4 text-[#C2410C] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Óleo na especificação do manual e filtros novos</span></li><li class="flex items-start gap-2.5 text-sm text-slate-700"><svg class="w-4 h-4 text-[#C2410C] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Fluidos, correias e arrefecimento conferidos</span></li><li class="flex items-start gap-2.5 text-sm text-slate-700"><svg class="w-4 h-4 text-[#C2410C] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Lista do que pode esperar a próxima revisão</span></li></ul>
+  </div>
+  <div class="mt-6 pt-5 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4">
+    <div><span class="block text-sm text-slate-500">A partir de</span><span class="font-mono tabular-nums text-xl font-semibold text-[#0D1117]">R$ 380</span></div>
+    <a href="/modelos/oficina-1/contato/?servico=revisao-preventiva#agendamento" data-servico="revisao-preventiva" class="inline-flex items-center gap-1.5 min-h-11 px-4 py-2.5 text-sm font-semibold text-[#0D1117] bg-[#F1F3F5] hover:bg-[#0D1117] hover:text-white rounded-md transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#F97316]">Orçar serviço<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+  </div>
+</article><article data-cat="eletrica" class="flex flex-col justify-between p-6 sm:p-7 rounded-lg border border-slate-200 bg-white ">
+  <div>
+    <div class="flex items-center justify-between gap-4 text-sm text-slate-500 mb-3"><span>Elétrica e ar</span><span class="font-mono tabular-nums text-slate-600 whitespace-nowrap">40 min</span></div>
+    <h3 class="font-display text-xl sm:text-2xl font-bold tracking-tight text-[#0D1117]">Diagnóstico com scanner e osciloscópio</h3>
+    <p class="mt-2.5 text-base text-slate-600 leading-relaxed max-w-2xl">Luz da injeção acesa, consumo alto ou falha em marcha lenta. O scanner aponta a área e o osciloscópio confirma a peça.</p>
+    <ul class="mt-5 space-y-2 border-t border-slate-100 pt-4"><li class="flex items-start gap-2.5 text-sm text-slate-700"><svg class="w-4 h-4 text-[#C2410C] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Leitura de todos os módulos do carro</span></li><li class="flex items-start gap-2.5 text-sm text-slate-700"><svg class="w-4 h-4 text-[#C2410C] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Teste de bicos, bobinas e pressão da linha</span></li><li class="flex items-start gap-2.5 text-sm text-slate-700"><svg class="w-4 h-4 text-[#C2410C] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Valor abatido se você fizer o reparo aqui</span></li></ul>
+  </div>
+  <div class="mt-6 pt-5 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4">
+    <div><span class="block text-sm text-slate-500">A partir de</span><span class="font-mono tabular-nums text-xl font-semibold text-[#0D1117]">R$ 160</span></div>
+    <a href="/modelos/oficina-1/contato/?servico=diagnostico#agendamento" data-servico="diagnostico" class="inline-flex items-center gap-1.5 min-h-11 px-4 py-2.5 text-sm font-semibold text-[#0D1117] bg-[#F1F3F5] hover:bg-[#0D1117] hover:text-white rounded-md transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#F97316]">Orçar serviço<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+  </div>
+</article><article data-cat="freios" class="flex flex-col justify-between p-6 sm:p-7 rounded-lg border border-slate-200 bg-white ">
+  <div>
+    <div class="flex items-center justify-between gap-4 text-sm text-slate-500 mb-3"><span>Freios e suspensão</span><span class="font-mono tabular-nums text-slate-600 whitespace-nowrap">1h30</span></div>
+    <h3 class="font-display text-xl sm:text-2xl font-bold tracking-tight text-[#0D1117]">Freios e troca de fluido</h3>
+    <p class="mt-2.5 text-base text-slate-600 leading-relaxed max-w-2xl">Pedal baixo, chiado ou volante tremendo ao frear. Medimos disco e pastilha antes de dizer o que precisa trocar.</p>
+    <ul class="mt-5 space-y-2 border-t border-slate-100 pt-4"><li class="flex items-start gap-2.5 text-sm text-slate-700"><svg class="w-4 h-4 text-[#C2410C] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Medição de espessura e empenamento</span></li><li class="flex items-start gap-2.5 text-sm text-slate-700"><svg class="w-4 h-4 text-[#C2410C] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Limpeza das pinças e lubrificação das guias</span></li><li class="flex items-start gap-2.5 text-sm text-slate-700"><svg class="w-4 h-4 text-[#C2410C] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Fluido DOT 4 trocado sob pressão</span></li></ul>
+  </div>
+  <div class="mt-6 pt-5 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4">
+    <div><span class="block text-sm text-slate-500">A partir de</span><span class="font-mono tabular-nums text-xl font-semibold text-[#0D1117]">R$ 290</span></div>
+    <a href="/modelos/oficina-1/contato/?servico=freios#agendamento" data-servico="freios" class="inline-flex items-center gap-1.5 min-h-11 px-4 py-2.5 text-sm font-semibold text-[#0D1117] bg-[#F1F3F5] hover:bg-[#0D1117] hover:text-white rounded-md transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#F97316]">Orçar serviço<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+  </div>
+</article><article data-cat="freios" class="flex flex-col justify-between p-6 sm:p-7 rounded-lg border border-slate-200 bg-white ">
+  <div>
+    <div class="flex items-center justify-between gap-4 text-sm text-slate-500 mb-3"><span>Freios e suspensão</span><span class="font-mono tabular-nums text-slate-600 whitespace-nowrap">2h</span></div>
+    <h3 class="font-display text-xl sm:text-2xl font-bold tracking-tight text-[#0D1117]">Suspensão e alinhamento 3D</h3>
+    <p class="mt-2.5 text-base text-slate-600 leading-relaxed max-w-2xl">Batida seca em lombada, carro puxando ou pneu gasto de um lado só. Achamos a folga e entregamos a geometria medida.</p>
+    <ul class="mt-5 space-y-2 border-t border-slate-100 pt-4"><li class="flex items-start gap-2.5 text-sm text-slate-700"><svg class="w-4 h-4 text-[#C2410C] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Aperto com torquímetro na especificação</span></li><li class="flex items-start gap-2.5 text-sm text-slate-700"><svg class="w-4 h-4 text-[#C2410C] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Relatório da geometria antes e depois</span></li><li class="flex items-start gap-2.5 text-sm text-slate-700"><svg class="w-4 h-4 text-[#C2410C] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Balanceamento das quatro rodas</span></li></ul>
+  </div>
+  <div class="mt-6 pt-5 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4">
+    <div><span class="block text-sm text-slate-500">A partir de</span><span class="font-mono tabular-nums text-xl font-semibold text-[#0D1117]">R$ 240</span></div>
+    <a href="/modelos/oficina-1/contato/?servico=suspensao#agendamento" data-servico="suspensao" class="inline-flex items-center gap-1.5 min-h-11 px-4 py-2.5 text-sm font-semibold text-[#0D1117] bg-[#F1F3F5] hover:bg-[#0D1117] hover:text-white rounded-md transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#F97316]">Orçar serviço<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+  </div>
+</article><article data-cat="revisao" class="flex flex-col justify-between p-6 sm:p-7 rounded-lg border border-slate-200 bg-white ">
+  <div>
+    <div class="flex items-center justify-between gap-4 text-sm text-slate-500 mb-3"><span>Revisão e motor</span><span class="font-mono tabular-nums text-slate-600 whitespace-nowrap">3h</span></div>
+    <h3 class="font-display text-xl sm:text-2xl font-bold tracking-tight text-[#0D1117]">Fluido de câmbio automático</h3>
+    <p class="mt-2.5 text-base text-slate-600 leading-relaxed max-w-2xl">Tranco na troca de marcha ou demora para engatar. Trocamos o fluido por máquina e conferimos o nível na temperatura certa.</p>
+    <ul class="mt-5 space-y-2 border-t border-slate-100 pt-4"><li class="flex items-start gap-2.5 text-sm text-slate-700"><svg class="w-4 h-4 text-[#C2410C] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Fluido homologado para o seu câmbio</span></li><li class="flex items-start gap-2.5 text-sm text-slate-700"><svg class="w-4 h-4 text-[#C2410C] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Filtro e junta do cárter quando houver</span></li><li class="flex items-start gap-2.5 text-sm text-slate-700"><svg class="w-4 h-4 text-[#C2410C] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Teste de rodagem com leitura de temperatura</span></li></ul>
+  </div>
+  <div class="mt-6 pt-5 border-t border-slate-200 flex flex-wrap items-center justify-between gap-4">
+    <div><span class="block text-sm text-slate-500">A partir de</span><span class="font-mono tabular-nums text-xl font-semibold text-[#0D1117]">R$ 690</span></div>
+    <a href="/modelos/oficina-1/contato/?servico=cambio#agendamento" data-servico="cambio" class="inline-flex items-center gap-1.5 min-h-11 px-4 py-2.5 text-sm font-semibold text-[#0D1117] bg-[#F1F3F5] hover:bg-[#0D1117] hover:text-white rounded-md transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#F97316]">Orçar serviço<svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 7h10v10"/><path d="M7 17 17 7"/></svg></a>
+  </div>
+</article></div>
+</div></section>
+<section id="diagnostico" class="py-16 lg:py-24 bg-white"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
+    <div class="lg:col-span-6"><img src="/modelos/oficina-1/img/diagnostico.webp" width="1376" height="768" alt="Técnicos medindo o sinal elétrico do motor com osciloscópio" class="w-full h-full aspect-video lg:aspect-auto lg:min-h-[460px] object-cover object-[45%_50%] rounded-lg border border-slate-200" loading="lazy"></div>
+    <div class="lg:col-span-6 flex flex-col justify-center"><p class="text-sm font-medium text-[#C2410C] tracking-wide mb-2">Como trabalhamos</p><h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-[#0D1117] text-balance">Diagnóstico certo para você não pagar por peça boa.</h2>
+      <ol class="mt-8 divide-y divide-slate-200 border-y border-slate-200"><li class="py-4 sm:py-5 flex items-start justify-between gap-4"><div><h3 class="font-display text-lg font-semibold">1. Você conta o que sente</h3><p class="mt-1 text-base text-slate-600 leading-relaxed">Ouvimos o sintoma na recepção e registramos quilometragem e estado do carro com você ao lado.</p></div><span class="hidden sm:block font-mono text-sm text-slate-500 whitespace-nowrap pt-1">10 min</span></li><li class="py-4 sm:py-5 flex items-start justify-between gap-4"><div><h3 class="font-display text-lg font-semibold">2. A gente mede antes de falar</h3><p class="mt-1 text-base text-slate-600 leading-relaxed">Scanner, osciloscópio e elevador. As fotos e os vídeos das peças vão para o seu WhatsApp.</p></div><span class="hidden sm:block font-mono text-sm text-slate-500 whitespace-nowrap pt-1">30 min</span></li><li class="py-4 sm:py-5 flex items-start justify-between gap-4"><div><h3 class="font-display text-lg font-semibold">3. Você escolhe o que fazer</h3><p class="mt-1 text-base text-slate-600 leading-relaxed">O orçamento separa o urgente do que pode esperar. Sem a sua aprovação, nenhuma peça sai do lugar.</p></div><span class="hidden sm:block font-mono text-sm text-slate-500 whitespace-nowrap pt-1">No celular</span></li><li class="py-4 sm:py-5 flex items-start justify-between gap-4"><div><h3 class="font-display text-lg font-semibold">4. O carro sai testado</h3><p class="mt-1 text-base text-slate-600 leading-relaxed">Aperto no torquímetro, teste de rua e entrega com nota fiscal e garantia. A peça velha fica com você.</p></div><span class="hidden sm:block font-mono text-sm text-slate-500 whitespace-nowrap pt-1">Na hora marcada</span></li></ol></div>
+  </div>
+  <div id="avaliacoes" class="mt-16 pt-14 border-t border-slate-200"><h3 class="mb-8 font-display text-2xl sm:text-3xl font-bold tracking-tight">Quem já deixou o carro aqui</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6"><figure class="p-6 sm:p-7 rounded-lg border border-slate-200 bg-[#F8F9FA] flex flex-col justify-between gap-6"><div><p class="text-sm text-[#C2410C] font-medium mb-3">Troca de bobina</p><blockquote class="text-lg leading-relaxed">“Vim com orçamento de quatro bobinas. Aqui me mandaram o vídeo do teste e era só uma. Busquei o carro no mesmo dia.”</blockquote></div><figcaption class="pt-4 border-t border-slate-200 flex flex-wrap justify-between gap-2 text-sm"><span class="font-semibold">Ricardo Almeida</span><span class="text-slate-500">Compass 2022, Jardins</span></figcaption></figure><figure class="p-6 sm:p-7 rounded-lg border border-slate-200 bg-[#F8F9FA] flex flex-col justify-between gap-6"><div><p class="text-sm text-[#C2410C] font-medium mb-3">Revisão de 40 mil km</p><blockquote class="text-lg leading-relaxed">“Recebi a lista com o preço de cada filtro e duas coisas marcadas como “pode esperar”. Nunca tinham me dito isso em oficina.”</blockquote></div><figcaption class="pt-4 border-t border-slate-200 flex flex-wrap justify-between gap-2 text-sm"><span class="font-semibold">Mariana Ferreira</span><span class="text-slate-500">HR-V 2021, Atalaia</span></figcaption></figure></div></div>
+</div></section>
+<section id="agendamento" class="py-16 lg:py-24 bg-[#0D1117] text-white scroll-mt-16"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-stretch">
+    <div class="lg:col-span-6 flex flex-col justify-between gap-8">
+      <div><p class="text-sm font-medium text-[#F97316] tracking-wide mb-2">Contato</p><h2 class="font-display text-2xl sm:text-3xl lg:text-4xl font-bold tracking-tight text-white text-balance">Conte o que o carro tem e reserve o seu horário.</h2>
+        <p class="mt-3 text-base sm:text-lg text-slate-300 leading-relaxed max-w-xl">Atendemos com hora marcada. Se não souber o nome do defeito, descreva o barulho: a gente começa por aí.</p>
+        <button type="button" data-zap="Olá, MotorHaus! Quero agendar um horário." class="mt-6 inline-flex items-center justify-center gap-2 min-h-12 px-6 py-3 text-sm sm:text-base font-semibold text-white bg-[#C2410C] hover:bg-[#9A3412] rounded-md transition-colors duration-150 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#F97316]">Chamar no WhatsApp</button></div>
+      <img src="/modelos/oficina-1/img/recepcao.webp" width="1376" height="768" alt="Recepção da oficina com parede de vidro voltada para os elevadores" class="w-full aspect-video object-cover rounded-lg border border-slate-800" loading="lazy">
+      <div class="grid grid-cols-1 sm:grid-cols-[1.35fr_1.1fr_1fr] gap-4 pt-6 border-t border-slate-800 text-sm text-slate-300">
+        <div class="flex items-start gap-2.5"><svg class="w-5 h-5 text-[#F97316] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 5-5.5 10.2-7.4 11.8a1 1 0 0 1-1.2 0C9.5 20.2 4 15 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg><span>Rua das Engrenagens, 240<br>Jardins, Aracaju</span></div>
+        <div class="flex items-start gap-2.5"><svg class="w-5 h-5 text-[#F97316] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg><span>Seg a sex, 8h às 18h<br>Sábado, 8h às 13h</span></div>
+        <div class="flex items-start gap-2.5"><svg class="w-5 h-5 text-[#F97316] shrink-0 mt-0.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg><span class="tabular-nums">(79) 90000-0000</span></div>
       </div>
-      <aside class="quote" aria-label="Exemplo de orçamento">
-        <p class="q-h">Orçamento</p>
-        <ul><li><span>Troca de óleo e filtro</span><b>R$ 180</b></li><li><span>Pastilhas de freio</span><b>R$ 240</b></li><li><span>Alinhamento e balanceamento</span><b>R$ 120</b></li></ul>
-        <p class="q-f">Valor aprovado por você antes de começar.</p>
-      </aside>
-    </section>
-    <section class="sec" id="servicos">
-      <h2>Serviços e preços</h2>
-      <ul class="rows"><li><span>Troca de óleo e filtro</span><b>R$ 180</b></li><li><span>Pastilhas de freio</span><b>R$ 240</b></li><li><span>Alinhamento e balanceamento</span><b>R$ 120</b></li><li><span>Suspensão, por eixo</span><b>R$ 350</b></li><li><span>Revisão completa</span><b>R$ 390</b></li></ul>
-    </section>
-    <section class="sec dark" id="como">
-      <h2>Como funciona</h2>
-      <ol class="steps">
-        <li><b>Você chama</b><span>Conte o problema pelo WhatsApp e combine o horário.</span></li>
-        <li><b>Você aprova o valor</b><span>Avaliamos o carro e passamos o preço antes de começar.</span></li>
-        <li><b>Você retira</b><span>Avisamos pelo WhatsApp quando o carro estiver pronto.</span></li>
-      </ol>
-    </section>
-    <section class="sec" id="contato">
-      <h2>Horários e endereço</h2>
-      <div class="info">
-        <dl><dt>Segunda a sexta</dt><dd>8h às 18h</dd><dt>Sábado</dt><dd>8h às 12h</dd><dt>Domingo</dt><dd>Fechado</dd></dl>
-        <div>
-          <p class="addr">Aracaju, Sergipe</p>
-          <a class="btn big" href="#contato">Chamar no WhatsApp</a>
-        </div>
-      </div>
-    </section>
-  </main>
-  <footer class="foot">
-    <span>Oficina Exemplo</span>
-    <span>Modelo de site feito por Alcantara</span>
-  </footer>
-  <a class="bar" href="#contato">Chamar no WhatsApp</a>
-</div>
-<a class="quero" href="https://wa.me/5579991360886?text=Ol%C3%A1!%20Vi%20o%20modelo%20de%20site%20para%20oficina%20e%20quero%20um%20assim." target="_blank" rel="noopener">Quero um assim</a>
+    </div>
+    <div class="lg:col-span-6 flex items-center bg-white text-[#0D1117] rounded-lg p-6 sm:p-8"><form id="orcamento" novalidate class="w-full space-y-4">
+  <div class="pb-4 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3">
+    <div><h3 class="font-display text-xl font-bold text-[#0D1117]">Pedir orçamento e horário</h3><p class="text-sm text-slate-500 mt-0.5">Sem compromisso, com resposta no mesmo dia</p></div>
+    <div class="sm:text-right"><span class="block text-sm text-slate-500">A partir de</span><span id="estimativa" class="font-mono tabular-nums text-lg font-semibold text-[#C2410C]">R$ 380 · 2h</span></div>
+  </div>
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div><label for="nome" class="block text-sm font-medium text-slate-700 mb-1.5">Seu nome</label><input id="nome" name="nome" placeholder="Ex: Carlos Silva" class="w-full min-h-11 px-3.5 py-2.5 text-base text-[#0D1117] bg-white border border-slate-400 rounded-md focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent" aria-describedby="nome-erro" autocomplete="name"><p id="nome-erro" class="mt-1 text-sm text-red-700" role="alert"></p></div>
+    <div><label for="fone" class="block text-sm font-medium text-slate-700 mb-1.5">WhatsApp com DDD</label><input id="fone" name="fone" placeholder="(79) 90000-0000" class="w-full min-h-11 px-3.5 py-2.5 text-base text-[#0D1117] bg-white border border-slate-400 rounded-md focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent" aria-describedby="fone-erro" type="tel" inputmode="numeric" autocomplete="tel"><p id="fone-erro" class="mt-1 text-sm text-red-700" role="alert"></p></div>
+    <div><label for="carro" class="block text-sm font-medium text-slate-700 mb-1.5">Carro (modelo e ano)</label><input id="carro" name="carro" placeholder="Ex: T-Cross 2022" class="w-full min-h-11 px-3.5 py-2.5 text-base text-[#0D1117] bg-white border border-slate-400 rounded-md focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent" aria-describedby="carro-erro" ><p id="carro-erro" class="mt-1 text-sm text-red-700" role="alert"></p></div>
+    <div><label for="servico" class="block text-sm font-medium text-slate-700 mb-1.5">Serviço</label><select id="servico" name="servico" class="w-full min-h-11 px-3.5 py-2.5 text-base text-[#0D1117] bg-white border border-slate-400 rounded-md focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent"><option value="revisao-preventiva" data-est="R$ 380 · 2h">Revisão preventiva programada</option><option value="diagnostico" data-est="R$ 160 · 40 min">Diagnóstico com scanner e osciloscópio</option><option value="freios" data-est="R$ 290 · 1h30">Freios e troca de fluido</option><option value="suspensao" data-est="R$ 240 · 2h">Suspensão e alinhamento 3D</option><option value="cambio" data-est="R$ 690 · 3h">Fluido de câmbio automático</option><option value="arrefecimento" data-est="R$ 260 · 2h">Sistema de arrefecimento</option><option value="correia" data-est="R$ 780 · 5h">Correia dentada e tensor</option><option value="embreagem" data-est="R$ 980 · 1 dia">Embreagem</option><option value="injecao" data-est="R$ 280 · 2h">Limpeza de injeção e bicos</option><option value="bateria" data-est="R$ 140 · 1h">Bateria, alternador e partida</option><option value="ar" data-est="R$ 220 · 1h30">Ar-condicionado</option><option value="pre-compra" data-est="R$ 390 · 2h">Avaliação antes da compra</option></select></div>
+  </div>
+  <fieldset><legend class="block text-sm font-medium text-slate-700 mb-1.5">Melhor período para trazer o carro</legend>
+    <div class="grid grid-cols-3 gap-2"><label class="flex flex-col items-center justify-center min-h-12 px-2 py-2 text-sm font-medium text-center rounded-md border cursor-pointer transition-colors bg-[#F8F9FA] text-slate-700 border-slate-300 hover:border-slate-500 has-checked:bg-[#0D1117] has-checked:text-white has-checked:border-[#0D1117] has-focus-visible:ring-2 has-focus-visible:ring-[#C2410C]"><input type="radio" name="periodo" value="Manhã (8h às 12h)" class="sr-only" checked><span>Manhã</span><span class="text-xs font-normal">8h às 12h</span></label><label class="flex flex-col items-center justify-center min-h-12 px-2 py-2 text-sm font-medium text-center rounded-md border cursor-pointer transition-colors bg-[#F8F9FA] text-slate-700 border-slate-300 hover:border-slate-500 has-checked:bg-[#0D1117] has-checked:text-white has-checked:border-[#0D1117] has-focus-visible:ring-2 has-focus-visible:ring-[#C2410C]"><input type="radio" name="periodo" value="Tarde (13h às 17h)" class="sr-only"><span>Tarde</span><span class="text-xs font-normal">13h às 17h</span></label><label class="flex flex-col items-center justify-center min-h-12 px-2 py-2 text-sm font-medium text-center rounded-md border cursor-pointer transition-colors bg-[#F8F9FA] text-slate-700 border-slate-300 hover:border-slate-500 has-checked:bg-[#0D1117] has-checked:text-white has-checked:border-[#0D1117] has-focus-visible:ring-2 has-focus-visible:ring-[#C2410C]"><input type="radio" name="periodo" value="Urgente (hoje)" class="sr-only"><span>Urgente</span><span class="text-xs font-normal">hoje</span></label></div>
+  </fieldset>
+  <div><label for="obs" class="block text-sm font-medium text-slate-700 mb-1.5">O que está acontecendo (opcional)</label><textarea id="obs" name="obs" rows="2" placeholder="Ex: barulho na frente ao passar em lombada" class="w-full min-h-11 px-3.5 py-2.5 text-base text-[#0D1117] bg-white border border-slate-400 rounded-md focus:outline-none focus:ring-2 focus:ring-[#C2410C] focus:border-transparent resize-none"></textarea></div>
+  <button type="submit" class="w-full inline-flex items-center justify-center gap-2 min-h-12 px-6 py-3 text-sm sm:text-base font-semibold text-white bg-[#C2410C] hover:bg-[#9A3412] rounded-md transition-colors duration-150 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#F97316]">Enviar pelo WhatsApp</button>
+</form></div>
+  </div></div></section>
+</main>
+<footer class="bg-[#090C10] text-slate-400 border-t border-slate-800/80"><div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-28">
+  <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-6 pb-8 border-b border-slate-800/80">
+    <div><p class="font-display text-lg font-bold text-white">MotorHaus</p><p class="mt-1.5 text-sm">Rua das Engrenagens, 240, Jardins, Aracaju, SE</p></div>
+    <nav aria-label="Rodapé" class="flex flex-wrap items-center gap-x-6 text-sm"><a href="/modelos/oficina-1/" class="flex items-center min-h-11 hover:text-white">Início</a><a href="/modelos/oficina-1/#sobre" class="flex items-center min-h-11 hover:text-white">Sobre nós</a><a href="/modelos/oficina-1/servicos/" class="flex items-center min-h-11 hover:text-white">Serviços</a><a href="/modelos/oficina-1/contato/" class="flex items-center min-h-11 hover:text-white">Contato</a></nav>
+  </div>
+  <div class="pt-6 flex flex-col sm:flex-row sm:items-center justify-between gap-x-6 text-sm"><p>Modelo de exemplo: empresa, pessoas, avaliações e contatos são fictícios. Cada site é feito do zero.</p><a href="/#modelos" class="flex items-center min-h-11 underline underline-offset-4 hover:text-white whitespace-nowrap">Ver outros modelos</a></div>
+</div></footer>
+<a href="https://wa.me/5579991360886?text=Ol%C3%A1!%20Vi%20o%20modelo%20de%20site%20para%20oficina%20e%20quero%20um%20assim." target="_blank" rel="noopener" class="fixed right-4 bottom-4 sm:right-6 sm:bottom-6 z-50 inline-flex items-center min-h-12 px-5 rounded-full bg-[#15803D] hover:bg-[#166534] text-white text-base font-semibold ring-2 ring-white shadow-xl transition-colors focus-visible:outline-none focus-visible:ring-4">Quero um assim</a>
+<dialog id="zap" aria-labelledby="zap-t" class="m-auto w-[min(460px,calc(100%-32px))] rounded-lg p-6 sm:p-8 text-[#0D1117] backdrop:bg-black/70">
+  <form method="dialog" class="float-right -mt-2 -mr-2"><button aria-label="Fechar" class="w-11 h-11 text-2xl cursor-pointer">×</button></form>
+  <h2 id="zap-t" class="font-display text-2xl font-bold tracking-tight"></h2>
+  <p class="mt-3 text-slate-600">Este é um modelo com contatos fictícios. No site real, o cliente já sai daqui com:</p>
+  <p id="zap-msg" class="mt-4 p-4 rounded-md bg-[#D9FDD3] whitespace-pre-line"></p>
+  <a href="https://wa.me/5579991360886?text=Ol%C3%A1!%20Vi%20o%20modelo%20de%20site%20para%20oficina%20e%20quero%20um%20assim." target="_blank" rel="noopener" class="mt-5 w-full inline-flex items-center justify-center gap-2 min-h-12 px-6 py-3 text-sm sm:text-base font-semibold text-white bg-[#C2410C] hover:bg-[#9A3412] rounded-md transition-colors duration-150 cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[#F97316]">Quero um site assim</a>
+</dialog>
 </body>
 </html>

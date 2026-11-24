@@ -4,10 +4,10 @@ export const emailEndereco = 'vitoralcantara1722@gmail.com';
 export const email = `mailto:${emailEndereco}?subject=${encodeURIComponent('Orçamento')}`;
 export const contato = whatsapp;
 // Sem href, o botão aparece desativado. Colocar o href quando o modelo for publicado.
-export const modelos = [
-  { tipo: 'Site', nome: 'Oficina', texto: 'Serviços com preço, horário e botão de WhatsApp.', href: '/modelos/oficina-1/' },
-  { tipo: 'Site', nome: 'Clínica', texto: 'Tratamentos, convênios e contato direto pelo WhatsApp.' },
-  { tipo: 'Sistema', nome: 'Clínica', texto: 'Agenda online com confirmação e lembrete automático.' },
+export const modelos: { tipo: string; nome: string; texto: string; href?: string }[] = [
+  { tipo: 'Site', nome: 'Oficina', texto: 'Início, serviços com preço e contato, em três páginas.', href: '/modelos/oficina-1/' },
+  { tipo: 'Site', nome: 'Clínica', texto: 'Página única com tratamentos, equipe e pedido de horário pelo WhatsApp.', href: '/modelos/clinica-1/' },
+  { tipo: 'Sistema', nome: 'Clínica', texto: 'Site completo com agenda online por tratamento, profissional, dia e horário.', href: '/modelos/clinica-2/' },
 ];
 
 // Cases do portfólio público (alcantara.dev.br/api/v1/projects). Só projetos solo; Grafeno e FisioTrack ficam fora por serem de equipe.
