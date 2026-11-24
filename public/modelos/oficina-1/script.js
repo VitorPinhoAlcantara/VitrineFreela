@@ -65,6 +65,6 @@ if (form) {
     e.preventDefault();
     const invalidos = Object.keys(regras).filter((c) => !validar(c));
     if (invalidos.length) return form[invalidos[0]].focus();
-    abrir(`Olá, MotorHaus! Sou ${form.nome.value.trim()}.\nCarro: ${form.carro.value.trim()}\nServiço: ${sel.selectedOptions[0].text}\nPeríodo: ${form.periodo.value}${form.obs.value.trim() ? '\nO que acontece: ' + form.obs.value.trim() : ''}\nMeu WhatsApp: ${form.fone.value}`);
+    abrir(`Olá, Rodalume! Sou ${form.nome.value.trim()}.\nCarro: ${form.carro.value.trim()}\nServiço: ${sel.selectedOptions[0].text}\nPeríodo: ${form.periodo.value}${form.obs.value.trim() ? '\nO que acontece: ' + form.obs.value.trim() : ''}\nMeu WhatsApp: ${form.fone.value}`);
   });
 }

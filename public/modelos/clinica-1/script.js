@@ -53,5 +53,5 @@ pedido.addEventListener('submit', (e) => {
   const ruins = invalidos();
   if (ruins.length) return pedido[ruins[0]].focus();
   const obs = pedido.obs.value.trim();
-  abrir(`Olá, Véra! Sou ${pedido.nome.value.trim()}.\nProcuro: ${pedido.interesse.value}\nUnidade: ${pedido.unidade.value}${obs ? `\nMelhor horário: ${obs}` : ''}\nMeu WhatsApp: ${pedido.fone.value}`);
+  abrir(`Olá, Tezaflor! Sou ${pedido.nome.value.trim()}.\nProcuro: ${pedido.interesse.value}\nUnidade: ${pedido.unidade.value}${obs ? `\nMelhor horário: ${obs}` : ''}\nMeu WhatsApp: ${pedido.fone.value}`);
 });

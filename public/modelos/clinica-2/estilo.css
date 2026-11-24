@@ -54,7 +54,7 @@ body:not(.com-banner) { padding-top: 80px; }
 .banner > img { position: absolute; inset: 0 0 auto; z-index: -2; height: 100svh; min-height: 620px; object-position: 50% 30%; }
 .banner::before { content: ""; position: absolute; inset: 0 0 auto; z-index: -1; height: max(100svh, 620px); background: linear-gradient(rgb(70 36 24 / .72), rgb(70 36 24 / .62) 45%, rgb(48 24 16 / .86)); }
 .banner__in { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; min-height: max(calc(100svh - 112px), 508px); padding-top: 110px; padding-bottom: 52px; text-align: center; }
-.banner__marca { margin-block: auto; font: 400 clamp(110px, 13vw, 190px)/.9 var(--titulo); color: rgb(255 255 255 / .94); }
+.banner__marca { margin-block: auto; font: 400 clamp(64px, 8vw, 112px)/.9 var(--titulo); color: rgb(255 255 255 / .94); }
 .banner h1 { font-size: clamp(32px, 3.4vw, 50px); max-width: 24ch; }
 .banner__in > p:not(.banner__marca) { margin: 14px 0 28px; max-width: 52ch; font-size: 19px; }
 .banner .botoes { justify-content: center; }

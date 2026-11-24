@@ -163,7 +163,7 @@ if (form) {
       return primeiro.focus();
     }
     if (ruins.length) return form[ruins[0]].focus();
-    reserva = { cod: `VE-${Math.floor(1000 + Math.random() * 9000)}`, iso: d.iso, hora, min: t.min, prof: p.id, t, u, p, d, nome: form.nome.value.trim(), fone: form.fone.value };
+    reserva = { cod: `TZ-${Math.floor(1000 + Math.random() * 9000)}`, iso: d.iso, hora, min: t.min, prof: p.id, t, u, p, d, nome: form.nome.value.trim(), fone: form.fone.value };
     gravarReservas([...lerReservas(), { cod: reserva.cod, iso: d.iso, hora, min: t.min, prof: p.id }]);
     $('#ok-cod').textContent = `Reserva ${reserva.cod}`;
     $('#ok-txt').textContent = `${reserva.nome}, esperamos você na unidade ${u.nome}.`;
@@ -181,12 +181,12 @@ if (form) {
     gravarReservas(lerReservas().filter((r) => r.cod !== reserva.cod));
     mostrar(false);
   });
-  $('#ok-zap').addEventListener('click', () => abrir(`Olá, Véra! Minha reserva é a ${reserva.cod}.\nNome: ${reserva.nome}\nTratamento: ${reserva.t.nome}\nProfissional: ${reserva.p.nome}\nUnidade: ${reserva.u.nome}\nDia: ${reserva.d.longo}, às ${reserva.hora}`));
+  $('#ok-zap').addEventListener('click', () => abrir(`Olá, Tezaflor! Minha reserva é a ${reserva.cod}.\nNome: ${reserva.nome}\nTratamento: ${reserva.t.nome}\nProfissional: ${reserva.p.nome}\nUnidade: ${reserva.u.nome}\nDia: ${reserva.d.longo}, às ${reserva.hora}`));
   $('#ics').addEventListener('click', () => {
     const inicio = new Date(`${reserva.iso}T${reserva.hora}:00`);
     const carimbo = (x) => x.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z';
     const txt = (s) => s.replace(/[\\;,]/g, '\\$&');
-    const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Vera Estetica//Modelo//PT', 'BEGIN:VEVENT', `UID:${reserva.cod}@veraestetica.example`, `DTSTAMP:${carimbo(new Date())}`, `DTSTART:${carimbo(inicio)}`, `DTEND:${carimbo(new Date(+inicio + reserva.min * 60000))}`, `SUMMARY:${txt(`${reserva.t.nome} na Véra Estética`)}`, `LOCATION:${txt(reserva.u.end)}`, 'END:VEVENT', 'END:VCALENDAR', ''].join('\r\n');
+    const ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//Tezaflor//Modelo//PT', 'BEGIN:VEVENT', `UID:${reserva.cod}@tezaflor.example`, `DTSTAMP:${carimbo(new Date())}`, `DTSTART:${carimbo(inicio)}`, `DTEND:${carimbo(new Date(+inicio + reserva.min * 60000))}`, `SUMMARY:${txt(`${reserva.t.nome} na Tezaflor Estética`)}`, `LOCATION:${txt(reserva.u.end)}`, 'END:VEVENT', 'END:VCALENDAR', ''].join('\r\n');
     const a = document.createElement('a');
     a.href = URL.createObjectURL(new Blob([ics], { type: 'text/calendar;charset=utf-8' }));
     a.download = `${reserva.cod}.ics`;
