@@ -3,6 +3,7 @@ services:
     build: .
     container_name: vitrinefreela-web
     restart: unless-stopped
+    mem_limit: 256m
     ports:
       - '20009:4321'
     environment:

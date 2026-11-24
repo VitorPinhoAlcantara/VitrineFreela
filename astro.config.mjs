@@ -30,7 +30,7 @@ const modelosNoDev = {
 export default defineConfig({
   site: 'https://vitrine.alcantara.dev.br',
   output: 'server',
-  adapter: node({ mode: 'standalone' }),
+  adapter: node({ mode: 'standalone', bodySizeLimit: 16 * 1024 }),
   server: { host: true, port: 4321 },
   security: {
     allowedDomains: [

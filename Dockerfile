@@ -13,4 +13,5 @@ COPY --from=build /app/dist ./dist
 COPY --from=build /app/node_modules ./node_modules
 COPY package.json ./
 EXPOSE 4321
+USER node
 CMD ["node", "./dist/server/entry.mjs"]
