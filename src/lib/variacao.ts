@@ -56,9 +56,9 @@ export const pessoais = [
 ];
 
 export const planos = [
-  { nome: 'Site', texto: 'Página para o seu negócio aparecer no Google e receber contato.', de: 'R$ 600', preco: 'R$ 400', mes: '+ R$ 60/mês', itens: ['Até 5 seções', 'Botão de WhatsApp', 'Pronto para celular'] },
-  { nome: 'Catálogo', texto: 'Produtos com fotos e preço. O pedido chega pronto no WhatsApp.', de: 'R$ 1.200', preco: 'R$ 1.000', mes: '+ R$ 100/mês', itens: ['Painel para editar produtos', 'Carrinho e pedido', 'Domínio no seu nome'] },
-  { nome: 'Sistema', texto: 'Agenda, cadastro ou painel que tira trabalho manual do dia a dia.', de: 'R$ 2.500', preco: 'R$ 2.000', mes: '+ R$ 150/mês', itens: ['Login e níveis de acesso', 'Lembretes automáticos', 'Banco de dados próprio'] },
+  { nome: 'Site', texto: 'Página para o seu negócio aparecer no Google e receber contato.', de: 'R$ 600', preco: 'R$ 400', mes: '+ R$ 60/mês', itens: ['Página única com até 5 blocos', 'Botão de WhatsApp', 'Pronto para celular'] },
+  { nome: 'Catálogo', texto: 'Produtos com fotos e preço. O pedido chega pronto no WhatsApp.', de: 'R$ 1.200', preco: 'R$ 1.000', mes: '+ R$ 100/mês', itens: ['Home e aba de produtos', 'Painel administrativo do site', 'Pedidos pelo WhatsApp'] },
+  { nome: 'Sistema', texto: 'Agenda, cadastro ou painel que tira trabalho manual do dia a dia.', de: 'R$ 2.500', preco: 'R$ 2.000', mes: '+ R$ 150/mês', itens: ['Login e níveis de acesso', 'Fluxo sob medida pro seu negócio', 'Relatórios simples do que acontece'] },
   { nome: 'Automação', texto: 'Atendimento no WhatsApp que responde, agenda e encaminha sozinho.', preco: 'Depende do problema', mes: 'Orçamento em reunião', itens: ['Chatbot no WhatsApp Business', 'Respostas e catálogo automáticos', 'Integração com planilhas e sistemas'], reuniao: true },
 ];
 
